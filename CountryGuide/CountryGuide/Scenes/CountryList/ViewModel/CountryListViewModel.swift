@@ -24,12 +24,13 @@ final class CountryListViewModel {
     }
     
     func onViewWillAppear() {
+        guard countries.value.isEmpty else { return }
         loadCountries()
     }
     
     func loadCountries() {
         
-        apiService.loadCountires { [weak self] result in            
+        apiService.getAllCountires { [weak self] result in
             guard let this = self else { return }
             
             switch result {

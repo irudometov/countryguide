@@ -9,10 +9,11 @@
 import Foundation
 import Moya
 
-final class AppCoordinator {
+final class AppCoordinator: NSObject {
     
     private let apiService = APIService()
     private let window: UIWindow
+    private var rootNavigationController: UINavigationController!
     
     // MARK: - init
     
@@ -21,9 +22,27 @@ final class AppCoordinator {
     }
     
     func start() {        
+        
         let viewModel = CountryListViewModel(apiService: APIService())
-        let countryList = CountryListViewController.newInstance(viewModel: viewModel)
-        window.rootViewController = UINavigationController(rootViewController: countryList)
+        let viewController = CountryListViewController.newInstance(viewModel: viewModel)
+        viewController.delegate = self
+        rootNavigationController = UINavigationController(rootViewController: viewController)
+        
+        window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
+    }
+    
+    private func openContryDetails(for country: Country) {
+        
+        let viewModel = CountryDetailsViewModel(country: country, apiService: apiService)
+        let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
+        rootNavigationController.pushViewController(viewController, animated: true)
+    }
+}
+
+extension AppCoordinator: CountryListDelegate {
+    
+    func didSelectCountry(_ country: Country) {
+        openContryDetails(for: country)
     }
 }

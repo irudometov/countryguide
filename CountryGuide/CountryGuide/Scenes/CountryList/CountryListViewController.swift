@@ -10,10 +10,16 @@ import UIKit
 import RxCocoa
 import RxSwift
 
+protocol CountryListDelegate: NSObjectProtocol {
+    func didSelectCountry(_ country: Country)
+}
+
 final class CountryListViewController: UITableViewController {
     
     private var viewModel: CountryListViewModel!
     private let disposeBag = DisposeBag()
+    
+    weak var delegate: CountryListDelegate?
     
     // MARK: - New instance
     
@@ -57,5 +63,21 @@ final class CountryListViewController: UITableViewController {
                 cell.detailTextLabel?.text = String(country.population)
                 
         }.disposed(by: disposeBag)
+        
+        tableView.rx
+            .modelSelected(Country.self)
+            .subscribe({ [weak self] value in
+                
+                guard let this = self,
+                    let country = value.element,
+                    let delegate = this.delegate else { return }
+                
+                delegate.didSelectCountry(country)
+                
+                if let indexPath = this.tableView.indexPathForSelectedRow {
+                    this.tableView.deselectRow(at: indexPath, animated: true)
+                }
+            })
+            .disposed(by: disposeBag)
     }
 }
