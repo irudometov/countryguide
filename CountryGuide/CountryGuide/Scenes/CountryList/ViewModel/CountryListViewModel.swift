@@ -12,15 +12,15 @@ import RxSwift
 
 final class CountryListViewModel {
     
-    private let apiService: APIService
+    private let countryProvider: ICountryProvider
     
     let title = BehaviorRelay<String>(value: "Countries")
     private (set) var countries = BehaviorRelay<[Country]>(value: [])
     
     // MARK: - init
     
-    init(apiService: APIService) {
-        self.apiService = apiService
+    init(countryProvider: ICountryProvider) {
+        self.countryProvider = countryProvider
     }
     
     func onViewWillAppear() {
@@ -30,7 +30,7 @@ final class CountryListViewModel {
     
     func loadCountries() {
         
-        apiService.getAllCountires { [weak self] result in
+        countryProvider.getCountries { [weak self] result in
             guard let this = self else { return }
             
             switch result {

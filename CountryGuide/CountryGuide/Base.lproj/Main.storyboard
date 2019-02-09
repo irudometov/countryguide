@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="g8m-DB-0Vv">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nyv-97-KPY">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -66,11 +66,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JI2-QT-HUF">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI2-QT-HUF">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x6J-XC-XWT" userLabel="Content view">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Capital:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T7z-vC-1BO">
                                                 <rect key="frame" x="16" y="67" width="65" height="21"/>
@@ -102,8 +102,8 @@
                                     </view>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="x6J-XC-XWT" firstAttribute="top" secondItem="JI2-QT-HUF" secondAttribute="top" id="0FA-xg-bFp"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="x6J-XC-XWT" secondAttribute="bottom" id="Jgg-U9-uBF"/>
+                                    <constraint firstItem="x6J-XC-XWT" firstAttribute="top" secondItem="JI2-QT-HUF" secondAttribute="top" id="6gj-6S-EK3"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="x6J-XC-XWT" secondAttribute="bottom" constant="-128" id="Jgg-U9-uBF"/>
                                     <constraint firstItem="x6J-XC-XWT" firstAttribute="centerY" secondItem="JI2-QT-HUF" secondAttribute="centerY" id="baH-Oo-bjp"/>
                                     <constraint firstAttribute="trailing" secondItem="x6J-XC-XWT" secondAttribute="trailing" id="f2f-tJ-bfL"/>
                                     <constraint firstItem="x6J-XC-XWT" firstAttribute="centerX" secondItem="JI2-QT-HUF" secondAttribute="centerX" id="gQD-DS-LdP"/>
@@ -117,7 +117,7 @@
                             <constraint firstAttribute="trailing" secondItem="JI2-QT-HUF" secondAttribute="trailing" id="DZM-JJ-5lC"/>
                             <constraint firstItem="JI2-QT-HUF" firstAttribute="leading" secondItem="2wZ-g2-dD3" secondAttribute="leading" id="Orl-4C-4he"/>
                             <constraint firstAttribute="bottomMargin" secondItem="JI2-QT-HUF" secondAttribute="bottom" id="c4M-2P-i0q"/>
-                            <constraint firstItem="JI2-QT-HUF" firstAttribute="top" secondItem="2wZ-g2-dD3" secondAttribute="top" id="yYu-Oa-8Fd"/>
+                            <constraint firstItem="JI2-QT-HUF" firstAttribute="top" secondItem="2wZ-g2-dD3" secondAttribute="top" constant="64" id="yYu-Oa-8Fd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BcW-wc-xoq"/>
                     </view>
@@ -128,6 +128,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poM-7H-e5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="812" y="38.23088455772114"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="GOv-1g-0yv">
+            <objects>
+                <navigationController id="Nyv-97-KPY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="STx-qi-cOC">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="g8m-DB-0Vv" kind="relationship" relationship="rootViewController" id="E1g-vN-mwn"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ecd-2G-kzR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-644" y="39"/>
         </scene>
     </scenes>
 </document>

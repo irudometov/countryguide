@@ -26,6 +26,24 @@ struct Country: Decodable {
     }
 }
 
+/*
+{
+    "code": "RUB",
+    "name": "Russian ruble",
+    "symbol": "₽"
+}
+*/
+struct Currency: Decodable {
+    
+    let code: String
+    let name: String
+    let symbol: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case code, name, symbol
+    }
+}
+
 struct CountryInfo: Decodable {
     
     let name: String
@@ -33,10 +51,12 @@ struct CountryInfo: Decodable {
     let population: Int
     let capital: String
     let flag: String?
+    let borders: [String]
+    let currencies: [Currency]
 
     private enum CodingKeys: String, CodingKey {
         case name, alpha3Code, population, flag
-        case capital
+        case capital, borders, currencies
     }
 }
 

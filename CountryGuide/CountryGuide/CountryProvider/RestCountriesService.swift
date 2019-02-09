@@ -50,8 +50,6 @@ extension RestCountriesService: TargetType {
     var headers: [String : String]? {
         return ["Accept": "application/json"]
     }
-    
-    
 }
 
 // MARK: - Helpers

@@ -7,11 +7,11 @@
 //
 
 import Foundation
-import Moya
+import UIKit
 
 final class AppCoordinator: NSObject {
     
-    private let apiService = APIService()
+    private let countryProvider: ICountryProvider = CountryProvider(apiService: APIService())
     private let window: UIWindow
     private var rootNavigationController: UINavigationController!
     
@@ -23,7 +23,7 @@ final class AppCoordinator: NSObject {
     
     func start() {        
         
-        let viewModel = CountryListViewModel(apiService: APIService())
+        let viewModel = CountryListViewModel(countryProvider: countryProvider)
         let viewController = CountryListViewController.newInstance(viewModel: viewModel)
         viewController.delegate = self
         rootNavigationController = UINavigationController(rootViewController: viewController)
@@ -34,7 +34,7 @@ final class AppCoordinator: NSObject {
     
     private func openContryDetails(for country: Country) {
         
-        let viewModel = CountryDetailsViewModel(country: country, apiService: apiService)
+        let viewModel = CountryDetailsViewModel(country: country, countryProvider: countryProvider)
         let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
         rootNavigationController.pushViewController(viewController, animated: true)
     }

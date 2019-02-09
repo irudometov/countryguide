@@ -12,26 +12,27 @@ import RxSwift
 
 final class CountryDetailsViewModel {
     
+    private let countryProvider: ICountryProvider
+    
     private let country: Country
-    private var countryInfo: CountryInfo? {
+    private var summary: CountrySummaryInfo? {
         didSet {
-            if let info = countryInfo {
+            if let info = summary {
                 capital.accept(info.capital)
+                borders.accept(info.borders)
             }
         }
     }
-    private let apiService: APIService
     
     let title: BehaviorRelay<String>
     let capital = BehaviorRelay<String>(value: "")
-    var countryDetails: BehaviorRelay<CountryInfo>!
+    var borders = BehaviorRelay<[Country]>(value: [])
     
     // MARK: - init
     
-    init(country: Country, apiService: APIService) {
+    init(country: Country, countryProvider: ICountryProvider) {
         self.country = country
-        self.apiService = apiService
-        
+        self.countryProvider = countryProvider
         title = BehaviorRelay<String>(value: country.name)
     }
     
@@ -41,12 +42,12 @@ final class CountryDetailsViewModel {
     
     private func preloadCountryInfo() {
         
-        apiService.getDetails(of: country) { [weak self] result in
+         countryProvider.getSummaryInfo(of: country) { [weak self] result in
             guard let this = self else { return }
             
             switch result {
-            case .success(let countryInfo):
-                this.countryInfo = countryInfo
+            case .success(let summary):
+                this.summary = summary
             case .failure(let error):
                 print("fail to load countries: \(error.localizedDescription)")
             }
