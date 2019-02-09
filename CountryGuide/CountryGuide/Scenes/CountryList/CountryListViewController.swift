@@ -35,6 +35,7 @@ final class CountryListViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupRefreshControl()
         setupBindings()
     }
     
@@ -43,7 +44,13 @@ final class CountryListViewController: UITableViewController {
         viewModel.onViewWillAppear()
     }
     
+    private func setupRefreshControl() {
+        refreshControl = UIRefreshControl()
+    }
+    
     private func setupBindings() {
+        
+        // Title
         
         viewModel.title
             .asObservable()
@@ -51,6 +58,8 @@ final class CountryListViewController: UITableViewController {
                 self?.title = text
             }
             .disposed(by: disposeBag)
+        
+        // Table view
         
         tableView.dataSource = nil
         tableView.delegate = nil
@@ -78,6 +87,19 @@ final class CountryListViewController: UITableViewController {
                     this.tableView.deselectRow(at: indexPath, animated: true)
                 }
             })
+            .disposed(by: disposeBag)
+        
+        // Pull to refresh
+        
+        refreshControl?.rx.controlEvent(.valueChanged)
+            .map { [unowned self] _ in self.refreshControl?.isRefreshing ?? false }
+            .filter { $0 }
+            .bind { [unowned self] isRefreshing in
+                guard isRefreshing else { return }
+                self.viewModel.refreshData() { [weak self] _ in
+                    self?.refreshControl?.endRefreshing()                    
+                }
+            }
             .disposed(by: disposeBag)
     }
 }

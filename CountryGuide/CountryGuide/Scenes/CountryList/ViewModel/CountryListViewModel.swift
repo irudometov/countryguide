@@ -28,7 +28,11 @@ final class CountryListViewModel {
         loadCountries()
     }
     
-    func loadCountries() {
+    func refreshData(completion: @escaping ResultBlock<Bool>) {
+        loadCountries(completion: completion)
+    }
+    
+    private func loadCountries(completion: ResultBlock<Bool>? = nil) {
         
         countryProvider.getCountries { [weak self] result in
             guard let this = self else { return }
@@ -36,8 +40,10 @@ final class CountryListViewModel {
             switch result {
             case .success(let countries):
                 this.countries.accept(countries)
+                completion?(.success(true))
             case .failure(let error):
                 print("fail to load countries: \(error.localizedDescription)")
+                completion?(.failure(error))
             }
         }
     }
