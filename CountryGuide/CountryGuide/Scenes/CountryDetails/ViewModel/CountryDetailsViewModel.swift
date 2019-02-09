@@ -18,15 +18,26 @@ final class CountryDetailsViewModel {
     private var summary: CountrySummaryInfo? {
         didSet {
             if let info = summary {
+                
+                title.accept(info.countryName)
+                
                 capital.accept(info.capital)
-                borders.accept(info.borders)
+                population.accept(String(info.population))
+                
+                let borderList = info.borders.compactMap { $0.name }.joined(separator: "\n")
+                borders.accept(borderList)
+                
+                let currencyList = info.currencies.compactMap { $0.symbol ?? $0.code }.joined(separator: ",")
+                currencies.accept(currencyList)
             }
         }
     }
     
     let title: BehaviorRelay<String>
+    let population = BehaviorRelay<String>(value: "")
     let capital = BehaviorRelay<String>(value: "")
-    var borders = BehaviorRelay<[Country]>(value: [])
+    let borders = BehaviorRelay<String>(value: "")
+    let currencies = BehaviorRelay<String>(value: "")
     
     // MARK: - init
     
@@ -34,6 +45,7 @@ final class CountryDetailsViewModel {
         self.country = country
         self.countryProvider = countryProvider
         title = BehaviorRelay<String>(value: country.name)
+        population.accept(String(country.population))
     }
     
     func onViewWillAppear() {

@@ -14,8 +14,16 @@ struct CountrySummaryInfo {
     
     let borders: [Country]
     
+    var countryName: String {
+        return info.name
+    }
+    
     var capital: String {
         return info.capital
+    }
+    
+    var population: Int {
+        return info.population
     }
     
     var currencies: [Currency] {

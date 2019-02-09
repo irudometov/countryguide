@@ -11,7 +11,11 @@ import RxSwift
 
 final class CountryDetailsViewController: UIViewController {
 
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var populationLabel: UILabel!
     @IBOutlet weak var capitalLabel: UILabel!
+    @IBOutlet weak var bordersLabel: UILabel!
+    @IBOutlet weak var currenciesLabel: UILabel!
     
     private var viewModel: CountryDetailsViewModel!
     private let disposeBag = DisposeBag()
@@ -44,6 +48,7 @@ final class CountryDetailsViewController: UIViewController {
             .asObservable()
             .bind { [weak self] text in
                 self?.title = text
+                self?.nameLabel.text = text
             }
             .disposed(by: disposeBag)
         
@@ -54,6 +59,25 @@ final class CountryDetailsViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // TODO: add remaining bindings...
+        viewModel.population
+            .asObservable()
+            .bind { [weak self] text in
+                self?.populationLabel.text = text
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.borders
+            .asObservable()
+            .bind { [weak self] text in
+                self?.bordersLabel.text = text
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.currencies
+            .asObservable()
+            .bind { [weak self] text in
+                self?.currenciesLabel.text = text
+            }
+            .disposed(by: disposeBag)
     }
 }

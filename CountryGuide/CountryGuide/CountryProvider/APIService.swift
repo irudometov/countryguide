@@ -12,6 +12,24 @@ import Moya
 
 typealias ResultBlock<T> = (Result<T>) -> Void
 
+/*
+ {
+ "code": "RUB",
+ "name": "Russian ruble",
+ "symbol": "₽"
+ }
+ */
+struct Currency: Decodable {
+    
+    let code: String
+    let name: String
+    let symbol: String?
+    
+    private enum CodingKeys: String, CodingKey {
+        case code, name, symbol
+    }
+}
+
 // Data model
 
 struct Country: Decodable {
@@ -23,24 +41,6 @@ struct Country: Decodable {
     
     private enum CodingKeys: String, CodingKey {
         case name, alpha3Code, population, flag
-    }
-}
-
-/*
-{
-    "code": "RUB",
-    "name": "Russian ruble",
-    "symbol": "₽"
-}
-*/
-struct Currency: Decodable {
-    
-    let code: String
-    let name: String
-    let symbol: String?
-    
-    private enum CodingKeys: String, CodingKey {
-        case code, name, symbol
     }
 }
 
