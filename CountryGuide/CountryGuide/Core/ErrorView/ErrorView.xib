@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ErrorView" customModule="CountryGuide" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="91"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error message" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSI-Uq-S98">
+                    <rect key="frame" x="16" y="20" width="288" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRh-TM-MIJ">
+                    <rect key="frame" x="141.5" y="49" width="37" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="0D1-Nm-ymk"/>
+                    </constraints>
+                    <state key="normal" title="Retry"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rRh-TM-MIJ" secondAttribute="bottom" constant="12" id="0Dk-UL-Cwl"/>
+                <constraint firstItem="rSI-Uq-S98" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="8XZ-9e-lx3"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rSI-Uq-S98" secondAttribute="trailing" constant="16" id="CMr-Op-YbT"/>
+                <constraint firstItem="rRh-TM-MIJ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="KM8-Rk-Bu6"/>
+                <constraint firstItem="rSI-Uq-S98" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="Tfd-vp-jO8"/>
+                <constraint firstItem="rRh-TM-MIJ" firstAttribute="top" secondItem="rSI-Uq-S98" secondAttribute="bottom" constant="8" id="gwE-tc-D03"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="buttonRetry" destination="rRh-TM-MIJ" id="3Dw-e6-i9z"/>
+                <outlet property="textLabel" destination="rSI-Uq-S98" id="6bW-cW-aiD"/>
+            </connections>
+            <point key="canvasLocation" x="-414.39999999999998" y="142.57871064467767"/>
+        </view>
+    </objects>
+</document>

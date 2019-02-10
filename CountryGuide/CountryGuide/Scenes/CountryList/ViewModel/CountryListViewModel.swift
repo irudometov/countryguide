@@ -29,16 +29,13 @@ final class CountryListViewModel {
         loadCountries()
     }
     
-    func refreshData(completion: @escaping ResultBlock<Bool>) {
+    func refreshData(completion: ResultBlock<Bool>? = nil) {
         loadCountries(animateLoading: countries.value.isEmpty, completion: completion)
     }
     
     private func loadCountries(animateLoading: Bool = true, completion: ResultBlock<Bool>? = nil) {
         
-        guard !state.value.isLoading else {
-            print("\(self): already loading...")
-            return
-        }
+        guard !state.value.isLoading else { return }
         
         if animateLoading {
             state.accept(.loading)
@@ -57,5 +54,11 @@ final class CountryListViewModel {
                 completion?(.failure(error))
             }
         }
+    }
+    
+    private func testError() -> Error {
+        return NSError(domain: "com.irudometov.CountryGuide.error",
+                       code: 1,
+                       userInfo: [NSLocalizedDescriptionKey: "Test error"])
     }
 }
