@@ -6,6 +6,7 @@ def shared_pods
 
   pod 'Moya', '~> 12'
   pod 'RxCocoa'
+  pod 'RxDataSources'
   pod 'RxSwift'
 end
 

@@ -16,7 +16,7 @@ typealias ResultBlock<T> = (Result<T>) -> Void
  {
  "code": "RUB",
  "name": "Russian ruble",
- "symbol": "₽"
+ "symbol": "₽" (or null)
  }
  */
 struct Currency: Decodable {
@@ -101,7 +101,7 @@ final class APIService: MoyaProvider<RestCountriesService> {
         request(.name(countryName: country.name)) { result in
             switch result {
             case .success(let response):
-                APIService.parseJSONResponse(response, type: [CountryInfo].self, log: true) { result in
+                APIService.parseJSONResponse(response, type: [CountryInfo].self) { result in
                     
                     switch result {
                     case .success(let countryInfoList):

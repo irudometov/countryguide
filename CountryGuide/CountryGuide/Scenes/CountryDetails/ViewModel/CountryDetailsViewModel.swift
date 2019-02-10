@@ -8,6 +8,7 @@
 
 import Foundation
 import RxCocoa
+import RxDataSources
 import RxSwift
 
 final class CountryDetailsViewModel {
@@ -15,29 +16,25 @@ final class CountryDetailsViewModel {
     private let countryProvider: ICountryProvider
     
     private let country: Country
+    private var countrySummary = BehaviorRelay<CountrySummaryInfo?>(value: nil)
+    
     private var summary: CountrySummaryInfo? {
         didSet {
-            if let info = summary {
-                
-                title.accept(info.countryName)
-                
-                capital.accept(info.capital)
-                population.accept(String(info.population))
-                
-                let borderList = info.borders.compactMap { $0.name }.joined(separator: "\n")
-                borders.accept(borderList)
-                
-                let currencyList = info.currencies.compactMap { $0.symbol ?? $0.code }.joined(separator: ",")
-                currencies.accept(currencyList)
-            }
+            title.accept(summary?.countryName ?? "Details")
+            countrySummary.accept(summary)
         }
     }
     
+    let isLoading = BehaviorRelay<Bool>(value: false)
+    
     let title: BehaviorRelay<String>
-    let population = BehaviorRelay<String>(value: "")
-    let capital = BehaviorRelay<String>(value: "")
-    let borders = BehaviorRelay<String>(value: "")
-    let currencies = BehaviorRelay<String>(value: "")
+    var sections: Observable<[AnimatableSectionModel<Int, CountryPropertyCellModel>]> {
+        return countrySummary.map { summary in
+            guard let summary = summary else { return [AnimatableSectionModel(model: 0, items: [])] }
+            let models = CountryDetailsViewModel.buildCellModels(for: summary)
+            return [AnimatableSectionModel(model: 0, items: models)]
+        }
+    }
     
     // MARK: - init
     
@@ -45,7 +42,6 @@ final class CountryDetailsViewModel {
         self.country = country
         self.countryProvider = countryProvider
         title = BehaviorRelay<String>(value: country.name)
-        population.accept(String(country.population))
     }
     
     func onViewWillAppear() {
@@ -54,8 +50,12 @@ final class CountryDetailsViewModel {
     
     private func preloadCountryInfo() {
         
-         countryProvider.getSummaryInfo(of: country) { [weak self] result in
+        isLoading.accept(true)
+        
+        countryProvider.getSummaryInfo(of: country) { [weak self] result in
+            
             guard let this = self else { return }
+            this.isLoading.accept(false)
             
             switch result {
             case .success(let summary):
@@ -64,5 +64,37 @@ final class CountryDetailsViewModel {
                 print("fail to load countries: \(error.localizedDescription)")
             }
         }
+    }
+    
+    private static func buildCellModels(for summary: CountrySummaryInfo) -> [CountryPropertyCellModel] {
+        
+        var models = [CountryPropertyCellModel]()
+        
+        // Basic info
+        
+        models.append(.basicInfo(summary: summary))
+        
+        // Currencies
+        
+        if !summary.currencies.isEmpty {
+            
+            models.append(.sectionTitle(text: "Currencies".uppercased()))
+            models.append(contentsOf: summary.currencies.map {
+                let model = CurrencyCellModel(currencyName: $0.name, currencySymbol: $0.symbol ?? "-")
+                return .currency(model: model)
+            })
+        }
+        
+        // Borders
+        
+        if !summary.borders.isEmpty {
+            
+            models.append(.sectionTitle(text: "Neighboring countries".uppercased()))
+            models.append(contentsOf: summary.borders.map {
+                return .border(country: $0)
+            })
+        }
+        
+        return models
     }
 }

@@ -21,6 +21,12 @@
 		366CBFB1220CA7A500707B8E /* CountryDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CBFB0220CA7A500707B8E /* CountryDetailsViewModel.swift */; };
 		366CBFB3220CA7AE00707B8E /* CountryDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366CBFB2220CA7AE00707B8E /* CountryDetailsViewController.swift */; };
 		369E7B9D220F371A00CD7961 /* CountryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E7B9C220F371A00CD7961 /* CountryProvider.swift */; };
+		36FA4E2B22102ECE008A88EB /* SectionTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */; };
+		36FA4E2D22102F41008A88EB /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */; };
+		36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */; };
+		36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */; };
+		36FA4E342210609C008A88EB /* BorderCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */; };
+		36FA4E3A221074B7008A88EB /* CountryBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */; };
 		BB1BFA8A14C37391C377AEAA /* Pods_CountryGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +59,12 @@
 		366CBFB0220CA7A500707B8E /* CountryDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewModel.swift; sourceTree = "<group>"; };
 		366CBFB2220CA7AE00707B8E /* CountryDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsViewController.swift; sourceTree = "<group>"; };
 		369E7B9C220F371A00CD7961 /* CountryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryProvider.swift; sourceTree = "<group>"; };
+		36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleTableViewCell.swift; sourceTree = "<group>"; };
+		36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
+		36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCellModel.swift; sourceTree = "<group>"; };
+		36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPropertyCellModel.swift; sourceTree = "<group>"; };
+		36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCountryTableViewCell.swift; sourceTree = "<group>"; };
+		36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryBasicInfoTableViewCell.swift; sourceTree = "<group>"; };
 		9C091C1E01C6E06C502EAEFA /* Pods-CountryGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.debug.xcconfig"; sourceTree = "<group>"; };
 		AA9D9E8FC5F7567C1D0D09F9 /* Pods-CountryGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.release.xcconfig"; sourceTree = "<group>"; };
 		F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -153,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				36580AE8220A0D6300E5C97A /* ViewModel */,
+				36FA4E2922102174008A88EB /* Views */,
 				366CBFB2220CA7AE00707B8E /* CountryDetailsViewController.swift */,
 			);
 			path = CountryDetails;
@@ -161,6 +174,7 @@
 		36580AE8220A0D6300E5C97A /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				36FA4E2E2210312A008A88EB /* CellModels */,
 				366CBFB0220CA7A500707B8E /* CountryDetailsViewModel.swift */,
 			);
 			path = ViewModel;
@@ -190,6 +204,26 @@
 				36580AF4220A182A00E5C97A /* CountryListTableViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		36FA4E2922102174008A88EB /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */,
+				36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */,
+				36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */,
+				36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		36FA4E2E2210312A008A88EB /* CellModels */ = {
+			isa = PBXGroup;
+			children = (
+				36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */,
+				36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */,
+			);
+			path = CellModels;
 			sourceTree = "<group>";
 		};
 		EB518DF53AB4F44D308B75CE /* Frameworks */ = {
@@ -331,10 +365,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Differentiator/Differentiator.framework",
 				"${BUILT_PRODUCTS_DIR}/Moya/Moya.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxDataSources/RxDataSources.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -342,10 +378,12 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differentiator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Moya.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxDataSources.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -362,13 +400,19 @@
 			files = (
 				36580AEC220A0DCF00E5C97A /* CountryListViewController.swift in Sources */,
 				369E7B9D220F371A00CD7961 /* CountryProvider.swift in Sources */,
+				36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */,
+				36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */,
 				366CBFB3220CA7AE00707B8E /* CountryDetailsViewController.swift in Sources */,
+				36FA4E2B22102ECE008A88EB /* SectionTitleTableViewCell.swift in Sources */,
+				36FA4E2D22102F41008A88EB /* CurrencyTableViewCell.swift in Sources */,
 				36580AC4220A06C200E5C97A /* AppDelegate.swift in Sources */,
 				36580AF0220A0E2F00E5C97A /* AppCoordinator.swift in Sources */,
 				36580AF5220A182A00E5C97A /* CountryListTableViewCell.swift in Sources */,
 				36580AEE220A0DDE00E5C97A /* CountryListViewModel.swift in Sources */,
+				36FA4E3A221074B7008A88EB /* CountryBasicInfoTableViewCell.swift in Sources */,
 				36580AF2220A105D00E5C97A /* APIService.swift in Sources */,
 				366CBFB1220CA7A500707B8E /* CountryDetailsViewModel.swift in Sources */,
+				36FA4E342210609C008A88EB /* BorderCountryTableViewCell.swift in Sources */,
 				36580AE5220A0A3900E5C97A /* RestCountriesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

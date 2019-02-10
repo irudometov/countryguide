@@ -7,18 +7,66 @@
 //
 
 import UIKit
+import RxCocoa
+import RxDataSources
 import RxSwift
 
 final class CountryDetailsViewController: UIViewController {
 
-    @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var populationLabel: UILabel!
-    @IBOutlet weak var capitalLabel: UILabel!
-    @IBOutlet weak var bordersLabel: UILabel!
-    @IBOutlet weak var currenciesLabel: UILabel!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     
     private var viewModel: CountryDetailsViewModel!
     private let disposeBag = DisposeBag()
+    
+    private var dataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> {
+        return RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> (
+            configureCell: { (dataSource, tableView, indexPath, model) -> UITableViewCell in
+                
+                switch model {
+                    
+                    // Basic info
+                    
+                case .basicInfo(let summary):
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CountryBasicInfoTableViewCell.reusetIdentifier, for: indexPath) as? CountryBasicInfoTableViewCell else {
+                        fatalError("Unsupported cell type: \(CountryBasicInfoTableViewCell.self) for row at index path \(indexPath)")
+                    }
+                    cell.countryNameLabel.text = summary.countryName
+                    cell.capitalLabel.text = summary.capital
+                    cell.populationLabel.text = summary.population
+                    return cell
+                    
+                    // Section title
+                    
+                case .sectionTitle(let text):
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: SectionTitleTableViewCell.reusetIdentifier, for: indexPath) as? SectionTitleTableViewCell else {
+                        fatalError("Unsupported cell type: \(SectionTitleTableViewCell.self) for row at index path \(indexPath)")
+                    }
+                    cell.titleLabel.text = text
+                    return cell
+                    
+                    // Currency
+                    
+                case .currency(let model):
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CurrencyTableViewCell.reusetIdentifier, for: indexPath) as? CurrencyTableViewCell else {
+                        fatalError("Unsupported cell type: \(CurrencyTableViewCell.self) for row at index path \(indexPath)")
+                    }
+                    cell.currencyNameLabel.text = model.currencyName
+                    cell.currencySymbolLabel.text = model.currencySymbol
+                    return cell
+                    
+                    // Border country
+                    
+                case .border(let country):
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: BorderCountryTableViewCell.reusetIdentifier, for: indexPath) as? BorderCountryTableViewCell else {
+                        fatalError("Unsupported cell type: \(BorderCountryTableViewCell.self) for row at index path \(indexPath)")
+                    }
+                    cell.countryNameLabel.text = country.name
+                    cell.countryPopulatioLabel.text = String(country.population)
+                    return cell
+                }
+        })
+    }
     
     // MARK: - New instance
     
@@ -44,40 +92,33 @@ final class CountryDetailsViewController: UIViewController {
     
     private func setupBindings() {
         
+        // Title
+        
         viewModel.title
             .asObservable()
             .bind { [weak self] text in
                 self?.title = text
-                self?.nameLabel.text = text
             }
             .disposed(by: disposeBag)
         
-        viewModel.capital
-            .asObservable()
-            .bind { [weak self] text in
-                self?.capitalLabel.text = text
+        // Loading status
+        
+        viewModel.isLoading
+        .asObservable()
+            .bind { [weak self] isLoading in
+                guard let this = self else { return }
+                this.activityIndicator.isHidden = !isLoading
+                this.tableView.isHidden = isLoading
             }
             .disposed(by: disposeBag)
+       
+        // Table view
         
-        viewModel.population
-            .asObservable()
-            .bind { [weak self] text in
-                self?.populationLabel.text = text
-            }
-            .disposed(by: disposeBag)
+        tableView.dataSource = nil
+        tableView.delegate = nil
         
-        viewModel.borders
-            .asObservable()
-            .bind { [weak self] text in
-                self?.bordersLabel.text = text
-            }
-            .disposed(by: disposeBag)
-        
-        viewModel.currencies
-            .asObservable()
-            .bind { [weak self] text in
-                self?.currenciesLabel.text = text
-            }
+        viewModel.sections
+            .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
 }
