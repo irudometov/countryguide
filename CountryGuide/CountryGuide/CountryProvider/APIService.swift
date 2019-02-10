@@ -21,12 +21,11 @@ typealias ResultBlock<T> = (Result<T>) -> Void
  */
 struct Currency: Decodable {
     
-    let code: String
     let name: String
     let symbol: String?
     
     private enum CodingKeys: String, CodingKey {
-        case code, name, symbol
+        case name, symbol
     }
 }
 
@@ -101,7 +100,7 @@ final class APIService: MoyaProvider<RestCountriesService> {
         request(.name(countryName: country.name)) { result in
             switch result {
             case .success(let response):
-                APIService.parseJSONResponse(response, type: [CountryInfo].self) { result in
+                APIService.parseJSONResponse(response, type: [CountryInfo].self, log: true) { result in
                     
                     switch result {
                     case .success(let countryInfoList):
