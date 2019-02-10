@@ -14,6 +14,8 @@ final class CountryListViewModel {
     
     private let countryProvider: ICountryProvider
     
+    let isLoading = BehaviorRelay<Bool>(value: false)
+    
     let title = BehaviorRelay<String>(value: "Countries")
     private (set) var countries = BehaviorRelay<[Country]>(value: [])
     
@@ -29,13 +31,22 @@ final class CountryListViewModel {
     }
     
     func refreshData(completion: @escaping ResultBlock<Bool>) {
-        loadCountries(completion: completion)
+        loadCountries(animateLoading: countries.value.isEmpty, completion: completion)
     }
     
-    private func loadCountries(completion: ResultBlock<Bool>? = nil) {
+    private func loadCountries(animateLoading: Bool = true, completion: ResultBlock<Bool>? = nil) {
+        
+        if animateLoading {
+            isLoading.accept(true)
+        }
         
         countryProvider.getCountries { [weak self] result in
+            
             guard let this = self else { return }
+            
+            if animateLoading {
+                this.isLoading.accept(false)
+            }
             
             switch result {
             case .success(let countries):

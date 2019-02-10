@@ -10,11 +10,14 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-protocol CountryListDelegate: NSObjectProtocol {
+protocol CountryListDelegate: AnyObject {
     func didSelectCountry(_ country: Country)
 }
 
-final class CountryListViewController: UITableViewController {
+final class CountryListViewController: UIViewController {
+    
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     
     private var viewModel: CountryListViewModel!
     private let disposeBag = DisposeBag()
@@ -45,7 +48,22 @@ final class CountryListViewController: UITableViewController {
     }
     
     private func setupRefreshControl() {
-        refreshControl = UIRefreshControl()
+        guard let tableView = tableView else { return }
+        
+        if tableView.refreshControl == nil {
+            tableView.refreshControl = UIRefreshControl()
+        }
+        
+        tableView.refreshControl?.rx.controlEvent(.valueChanged)
+            .map { [unowned self] _ in self.tableView.refreshControl?.isRefreshing ?? false }
+            .filter { $0 }
+            .bind { [unowned self] isRefreshing in
+                guard isRefreshing else { return }
+                self.viewModel.refreshData() { [weak self] _ in
+                    self?.tableView.refreshControl?.endRefreshing()
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setupBindings() {
@@ -56,6 +74,23 @@ final class CountryListViewController: UITableViewController {
             .asObservable()
             .bind { [weak self] text in
                 self?.title = text
+            }
+            .disposed(by: disposeBag)
+        
+        // Loading status
+        
+        viewModel.isLoading
+            .asObservable()
+            .bind { [weak self] isLoading in
+                guard let this = self else { return }
+                
+                this.tableView.isHidden = isLoading
+                
+                if isLoading && !this.activityIndicator.isAnimating {
+                    this.activityIndicator.startAnimating()
+                } else if !isLoading && this.activityIndicator.isAnimating {
+                    this.activityIndicator.stopAnimating()
+                }
             }
             .disposed(by: disposeBag)
         
@@ -87,19 +122,6 @@ final class CountryListViewController: UITableViewController {
                     this.tableView.deselectRow(at: indexPath, animated: true)
                 }
             })
-            .disposed(by: disposeBag)
-        
-        // Pull to refresh
-        
-        refreshControl?.rx.controlEvent(.valueChanged)
-            .map { [unowned self] _ in self.refreshControl?.isRefreshing ?? false }
-            .filter { $0 }
-            .bind { [unowned self] isRefreshing in
-                guard isRefreshing else { return }
-                self.viewModel.refreshData() { [weak self] _ in
-                    self?.refreshControl?.endRefreshing()                    
-                }
-            }
             .disposed(by: disposeBag)
     }
 }

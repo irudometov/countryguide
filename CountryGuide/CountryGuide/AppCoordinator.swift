@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-final class AppCoordinator: NSObject {
+final class AppCoordinator {
     
-    private let countryProvider: ICountryProvider = CountryProvider(apiService: APIService())
+    private let countryProvider: ICountryProvider
     private let window: UIWindow
     private var rootNavigationController: UINavigationController!
     
@@ -19,6 +19,7 @@ final class AppCoordinator: NSObject {
     
     init(window: UIWindow) {
         self.window = window
+        countryProvider = CountryProvider(apiService: APIService())
     }
     
     func start() {        
@@ -32,9 +33,9 @@ final class AppCoordinator: NSObject {
         window.makeKeyAndVisible()
     }
     
-    private func openContryDetails(for country: Country) {
+    private func showDetails(of selectedCountry: Country) {
         
-        let viewModel = CountryDetailsViewModel(country: country, countryProvider: countryProvider)
+        let viewModel = CountryDetailsViewModel(country: selectedCountry, countryProvider: countryProvider)
         let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
         rootNavigationController.pushViewController(viewController, animated: true)
     }
@@ -42,7 +43,7 @@ final class AppCoordinator: NSObject {
 
 extension AppCoordinator: CountryListDelegate {
     
-    func didSelectCountry(_ country: Country) {
-        openContryDetails(for: country)
+    func didSelectCountry(_ selectedCountry: Country) {
+        showDetails(of: selectedCountry)
     }
 }

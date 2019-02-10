@@ -107,8 +107,14 @@ final class CountryDetailsViewController: UIViewController {
         .asObservable()
             .bind { [weak self] isLoading in
                 guard let this = self else { return }
-                this.activityIndicator.isHidden = !isLoading
+                
                 this.tableView.isHidden = isLoading
+                
+                if isLoading && !this.activityIndicator.isAnimating {
+                    this.activityIndicator.startAnimating()
+                } else if !isLoading && this.activityIndicator.isAnimating {
+                    this.activityIndicator.stopAnimating()
+                }
             }
             .disposed(by: disposeBag)
        
