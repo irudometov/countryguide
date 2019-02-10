@@ -78,22 +78,17 @@ final class CountryListViewController: UIViewController {
             .disposed(by: disposeBag)
         
         // Loading status
-        
+        /*
         viewModel.isLoading
             .asObservable()
             .bind { [weak self] isLoading in
                 guard let this = self else { return }
                 
                 this.tableView.isHidden = isLoading
-                
-                if isLoading && !this.activityIndicator.isAnimating {
-                    this.activityIndicator.startAnimating()
-                } else if !isLoading && this.activityIndicator.isAnimating {
-                    this.activityIndicator.stopAnimating()
-                }
+                this.activityIndicator.animateLoading(isLoading)                
             }
             .disposed(by: disposeBag)
-        
+        */
         // Table view
         
         tableView.dataSource = nil
@@ -123,5 +118,42 @@ final class CountryListViewController: UIViewController {
                 }
             })
             .disposed(by: disposeBag)
+        
+        // State
+        
+        viewModel.state
+            .asObservable()
+            .subscribe( { [weak self] event in
+                guard let state = event.element else { return }
+                self?.applyState(state)
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    private func applyState(_ state: ViewModelState) {
+        
+        print("viewModel.state == \(state)")
+        
+        tableView.isHidden = state != .ready
+        activityIndicator.animateLoading(state == .loading)
+        
+        if case .error(let error) = state {
+            displayError(error)
+        } else {
+            hideErrorView()
+        }
+    }
+}
+
+private extension CountryListViewController {
+    
+    // MARK: - Error
+    
+    func displayError(_ error: Error?) {
+        
+    }
+    
+    func hideErrorView() {
+        
     }
 }

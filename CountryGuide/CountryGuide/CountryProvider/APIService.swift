@@ -100,7 +100,7 @@ final class APIService: MoyaProvider<RestCountriesService> {
         request(.name(countryName: country.name)) { result in
             switch result {
             case .success(let response):
-                APIService.parseJSONResponse(response, type: [CountryInfo].self, log: true) { result in
+                APIService.parseJSONResponse(response, type: [CountryInfo].self) { result in
                     
                     switch result {
                     case .success(let countryInfoList):

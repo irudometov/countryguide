@@ -27,6 +27,8 @@
 		36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */; };
 		36FA4E342210609C008A88EB /* BorderCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */; };
 		36FA4E3A221074B7008A88EB /* CountryBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */; };
+		36FA4E3D2210A442008A88EB /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3C2210A442008A88EB /* ViewModelState.swift */; };
+		36FA4E402210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3F2210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift */; };
 		BB1BFA8A14C37391C377AEAA /* Pods_CountryGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +67,8 @@
 		36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPropertyCellModel.swift; sourceTree = "<group>"; };
 		36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCountryTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryBasicInfoTableViewCell.swift; sourceTree = "<group>"; };
+		36FA4E3C2210A442008A88EB /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
+		36FA4E3F2210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Ex.swift"; sourceTree = "<group>"; };
 		9C091C1E01C6E06C502EAEFA /* Pods-CountryGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.debug.xcconfig"; sourceTree = "<group>"; };
 		AA9D9E8FC5F7567C1D0D09F9 /* Pods-CountryGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.release.xcconfig"; sourceTree = "<group>"; };
 		F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -121,6 +125,7 @@
 		36580AC2220A06C200E5C97A /* CountryGuide */ = {
 			isa = PBXGroup;
 			children = (
+				36FA4E3B2210A432008A88EB /* Core */,
 				36580AE3220A0A2900E5C97A /* CountryProvider */,
 				36580AE6220A0D6300E5C97A /* Scenes */,
 				36580AC3220A06C200E5C97A /* AppDelegate.swift */,
@@ -224,6 +229,23 @@
 				36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */,
 			);
 			path = CellModels;
+			sourceTree = "<group>";
+		};
+		36FA4E3B2210A432008A88EB /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				36FA4E3E2210A794008A88EB /* Extensions */,
+				36FA4E3C2210A442008A88EB /* ViewModelState.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		36FA4E3E2210A794008A88EB /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				36FA4E3F2210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		EB518DF53AB4F44D308B75CE /* Frameworks */ = {
@@ -400,6 +422,8 @@
 			files = (
 				36580AEC220A0DCF00E5C97A /* CountryListViewController.swift in Sources */,
 				369E7B9D220F371A00CD7961 /* CountryProvider.swift in Sources */,
+				36FA4E402210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift in Sources */,
+				36FA4E3D2210A442008A88EB /* ViewModelState.swift in Sources */,
 				36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */,
 				36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */,
 				366CBFB3220CA7AE00707B8E /* CountryDetailsViewController.swift in Sources */,

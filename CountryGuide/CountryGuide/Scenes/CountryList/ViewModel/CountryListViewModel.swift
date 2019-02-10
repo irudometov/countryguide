@@ -14,8 +14,7 @@ final class CountryListViewModel {
     
     private let countryProvider: ICountryProvider
     
-    let isLoading = BehaviorRelay<Bool>(value: false)
-    
+    let state = BehaviorRelay<ViewModelState>(value: .initial)
     let title = BehaviorRelay<String>(value: "Countries")
     private (set) var countries = BehaviorRelay<[Country]>(value: [])
     
@@ -36,24 +35,25 @@ final class CountryListViewModel {
     
     private func loadCountries(animateLoading: Bool = true, completion: ResultBlock<Bool>? = nil) {
         
-        if animateLoading {
-            isLoading.accept(true)
+        guard !state.value.isLoading else {
+            print("\(self): already loading...")
+            return
         }
         
-        countryProvider.getCountries { [weak self] result in
-            
+        if animateLoading {
+            state.accept(.loading)
+        }
+        
+        countryProvider.getCountries { [weak self] result in            
             guard let this = self else { return }
-            
-            if animateLoading {
-                this.isLoading.accept(false)
-            }
             
             switch result {
             case .success(let countries):
                 this.countries.accept(countries)
+                this.state.accept(.ready)
                 completion?(.success(true))
             case .failure(let error):
-                print("fail to load countries: \(error.localizedDescription)")
+                this.state.accept(.error(lastError: error))
                 completion?(.failure(error))
             }
         }

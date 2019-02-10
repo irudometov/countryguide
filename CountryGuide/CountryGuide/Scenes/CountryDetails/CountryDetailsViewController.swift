@@ -109,12 +109,7 @@ final class CountryDetailsViewController: UIViewController {
                 guard let this = self else { return }
                 
                 this.tableView.isHidden = isLoading
-                
-                if isLoading && !this.activityIndicator.isAnimating {
-                    this.activityIndicator.startAnimating()
-                } else if !isLoading && this.activityIndicator.isAnimating {
-                    this.activityIndicator.stopAnimating()
-                }
+                this.activityIndicator.animateLoading(isLoading)
             }
             .disposed(by: disposeBag)
        
