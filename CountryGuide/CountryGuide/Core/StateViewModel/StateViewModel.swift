@@ -56,6 +56,8 @@ class StateViewModel {
     
     func reachabilityStatusChanged(isReachable: Bool) {
         
-        // Override this method in derived classes...
+        if isReachable {
+            preloadDataIfRequired()
+        }
     }
 }

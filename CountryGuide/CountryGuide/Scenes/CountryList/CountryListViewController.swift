@@ -127,10 +127,10 @@ final class CountryListViewController: UIViewController {
     
     private func applyState(_ state: ViewModelState) {
         
-        tableView.isHidden = state != .ready
-        activityIndicator.animateLoading(state == .loading)
+        tableView.isHidden = !state.isReady
+        activityIndicator.animateLoading(state.isLoading)
         
-        if state != .loading,
+        if !state.isLoading,
             let refreshControl = tableView.refreshControl,
             refreshControl.isRefreshing {
             refreshControl.endRefreshing()

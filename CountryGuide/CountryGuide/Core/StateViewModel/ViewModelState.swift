@@ -16,12 +16,15 @@ enum ViewModelState {
     case error(lastError: Error?)
     
     var isLoading: Bool {
-        switch self {
-        case .loading:
-            return true
-        default:
-            return false
-        }
+        return self == .loading
+    }
+    
+    var isError: Bool {
+        return self == .error(lastError: nil)
+    }
+    
+    var isReady: Bool {
+        return self == .ready
     }
 }
 

@@ -9,18 +9,13 @@
 import Foundation
 import RxCocoa
 import RxDataSources
-import Reachability
-import RxReachability
 import RxSwift
 
-final class CountryDetailsViewModel {
+final class CountryDetailsViewModel: StateViewModel {
     
     private let countryProvider: ICountryProvider
     private let country: Country
     private var countrySummary = BehaviorRelay<CountrySummaryInfo?>(value: nil)
-    
-    private var isReachable: Observable<Bool>?
-    private let disposeBag = DisposeBag()
     
     private var summary: CountrySummaryInfo? {
         didSet {
@@ -29,9 +24,6 @@ final class CountryDetailsViewModel {
         }
     }
     
-    let isLoading = BehaviorRelay<Bool>(value: false)
-    
-    let title: BehaviorRelay<String>
     var sections: Observable<[AnimatableSectionModel<Int, CountryPropertyCellModel>]> {
         return countrySummary.map { summary in
             guard let summary = summary else { return [AnimatableSectionModel(model: 0, items: [])] }
@@ -45,32 +37,29 @@ final class CountryDetailsViewModel {
     init(country: Country, countryProvider: ICountryProvider) {
         self.country = country
         self.countryProvider = countryProvider
-        title = BehaviorRelay<String>(value: country.name)
+        super.init()
+        title.accept(country.name)
     }
     
-    func onViewWillAppear() {
-        preloadCountryInfo()
-        startTrackingReachability()
+    override func preloadDataIfRequired() {
+        guard countrySummary.value == nil else { return }
+        loadCountryInfo()
     }
     
-    func onViewWillDisppear() {
-        stopTrackingReachability()
-    }
-    
-    private func preloadCountryInfo() {
+    private func loadCountryInfo() {
         
-        isLoading.accept(true)
+        guard !state.value.isLoading else { return }
+        state.accept(.loading)
         
         countryProvider.getSummaryInfo(of: country) { [weak self] result in
-            
             guard let this = self else { return }
-            this.isLoading.accept(false)
             
             switch result {
             case .success(let summary):
                 this.summary = summary
+                this.state.accept(.ready)
             case .failure(let error):
-                print("fail to load countries: \(error.localizedDescription)")
+                this.state.accept(.error(lastError: error))
             }
         }
     }
@@ -105,28 +94,5 @@ final class CountryDetailsViewModel {
         }
         
         return models
-    }
-}
-
-private extension CountryDetailsViewModel {
-    
-    // MARK: - Reachability
-    
-    func startTrackingReachability() {
-        
-        guard isReachable == nil else { return }
-        
-        isReachable =  Reachability.rx.isReachable.asObservable()
-        isReachable?.bind(onNext: { [weak self] hasConnection in
-            guard let this = self else { return }
-            
-            if this.countrySummary.value == nil {
-                this.preloadCountryInfo()
-            }
-        }).disposed(by: disposeBag)
-    }
-    
-    func stopTrackingReachability() {
-        isReachable = nil
     }
 }

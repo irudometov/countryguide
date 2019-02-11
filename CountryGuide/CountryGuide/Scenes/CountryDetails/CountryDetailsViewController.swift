@@ -117,15 +117,16 @@ final class CountryDetailsViewController: UIViewController {
         
         // Loading status
         
-        viewModel.isLoading
-        .asObservable()
-            .bind { [weak self] isLoading in
-                guard let this = self else { return }                
-                this.tableView.isHidden = isLoading
-                this.activityIndicator.animateLoading(isLoading)
-            }
+        // State
+        
+        viewModel.state
+            .asObservable()
+            .subscribe( { [weak self] event in
+                guard let state = event.element else { return }
+                self?.applyState(state)
+            })
             .disposed(by: disposeBag)
-       
+        
         // Table view
         
         tableView.dataSource = nil
@@ -134,5 +135,17 @@ final class CountryDetailsViewController: UIViewController {
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+    
+    private func applyState(_ state: ViewModelState) {
+        
+        tableView.isHidden = !state.isReady
+        activityIndicator.animateLoading(state.isLoading)
+        
+//        if case .error(let error) = state {
+//            displayError(error)
+//        } else {
+//            hideErrorView()
+//        }
     }
 }

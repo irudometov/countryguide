@@ -8,16 +8,11 @@
 
 import Foundation
 import RxCocoa
-import Reachability
-import RxReachability
 import RxSwift
 
 final class CountryListViewModel: StateViewModel {
     
     private let countryProvider: ICountryProvider
-    
-//    let state = BehaviorRelay<ViewModelState>(value: .initial)
-//    let title = BehaviorRelay<String>(value: "Countries")
     private (set) var countries = BehaviorRelay<[Country]>(value: [])
     
     // MARK: - init
