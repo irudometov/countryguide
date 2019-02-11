@@ -11,12 +11,13 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-final class CountryDetailsViewController: UIViewController {
-
+final class CountryDetailsViewController: UIViewController, IErrorViewContainer {
+    
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    private var errorView: ErrorView?
+    // IErrorViewContainer
+    var errorView: ErrorView?
     
     private var viewModel: CountryDetailsViewModel!
     private let disposeBag = DisposeBag()
@@ -143,40 +144,11 @@ final class CountryDetailsViewController: UIViewController {
         activityIndicator.animateLoading(state.isLoading)
         
         if case .error(let error) = state {
-            displayError(error)
+            displayError(error) { [weak self] in
+                self?.viewModel.preloadDataIfRequired()
+            }
         } else {
             hideErrorView()
         }
-    }
-}
-
-private extension CountryDetailsViewController {
-    
-    // MARK: - Error
-    
-    func displayError(_ error: Error?) {
-        
-        guard let errorView = self.errorView ?? ErrorView.loadFromNib() else {
-            fatalError("Fail to get an instance of an error view.")
-        }
-        
-        errorView.textLabel.text = error?.localizedDescription ?? "Unknown error has occured"
-        errorView.onRetry = { [weak self] in
-            self?.viewModel.preloadDataIfRequired()
-        }
-        
-        view.addSubview(errorView)
-        
-        errorView.setWidth(view.bounds.width)
-        errorView.centerInSuperview()
-        view.bringSubviewToFront(errorView)
-        
-        self.errorView = errorView
-    }
-    
-    func hideErrorView() {
-        guard let errorView = self.errorView else { return }
-        errorView.removeFromSuperview()
-        self.errorView = nil
     }
 }

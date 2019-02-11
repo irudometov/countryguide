@@ -10,12 +10,21 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class ErrorView: UIView {
+final class ErrorView: UIView & IErrorView {
     
     private let disposeBag = DisposeBag()
     
     @IBOutlet weak var textLabel: UILabel!
     @IBOutlet weak var buttonRetry: UIButton!
+    
+    var text: String? {
+        get {
+            return textLabel?.text
+        }
+        set {
+            textLabel?.text = newValue
+        }
+    }
     
     var onRetry: (() -> Void)? = nil {
         didSet {
