@@ -8,8 +8,6 @@
 
 import UIKit
 import RxCocoa
-import Reachability
-import RxReachability
 import RxSwift
 
 protocol CountryListDelegate: AnyObject {
@@ -95,7 +93,7 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
             .bind(to: tableView.rx.items(cellIdentifier: CountryListTableViewCell.reuseIdentifier, cellType: CountryListTableViewCell.self)) { (_, country, cell) in
                 
                 cell.textLabel?.text = country.name
-                cell.detailTextLabel?.text = String(country.population)
+                cell.detailTextLabel?.text = country.population
                 
         }.disposed(by: disposeBag)
         

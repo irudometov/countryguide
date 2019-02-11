@@ -41,10 +41,8 @@ struct CountrySummaryInfo {
 protocol ICountryProvider {
 
     func getCountries(completion: @escaping ResultBlock<[Country]>)
-    
     func getSummaryInfo(of country: Country, completion: @escaping ResultBlock<CountrySummaryInfo>)
-    
-    func findContries(byCodes codes: [String]) -> [Country]
+    func findCountries(byCodes codes: [String]) -> [Country]
 }
 
 final class CountryProvider: ICountryProvider {
@@ -76,23 +74,20 @@ final class CountryProvider: ICountryProvider {
     func getSummaryInfo(of country: Country, completion: @escaping ResultBlock<CountrySummaryInfo>) {
         
         apiService.getDetails(of: country) { [weak self] result in
-            
             guard let this = self else { return }
             
             switch result {
             case .success(let info):
-            
-                let borders = this.findContries(byCodes: info.borders)
+                let borders = this.findCountries(byCodes: info.borders)
                 let summary = CountrySummaryInfo(info: info, borders: borders)
-                completion(.success(summary))
-                
+                completion(.success(summary))                
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    func findContries(byCodes codes: [String]) -> [Country] {
+    func findCountries(byCodes codes: [String]) -> [Country] {
         return countries.filter { codes.contains($0.alpha3Code) }
     }
 }

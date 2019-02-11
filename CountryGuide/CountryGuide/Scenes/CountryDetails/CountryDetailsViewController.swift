@@ -66,7 +66,7 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer 
                         fatalError("Unsupported cell type: \(BorderCountryTableViewCell.self) for row at index path \(indexPath)")
                     }
                     cell.countryNameLabel.text = country.name
-                    cell.countryPopulatioLabel.text = String(country.population)
+                    cell.countryPopulatioLabel.text = country.population
                     return cell
                 }
         })

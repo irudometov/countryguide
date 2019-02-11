@@ -28,11 +28,17 @@ struct Country: Decodable {
     
     let name: String
     let alpha3Code: String
-    let population: Int
+    let populationValue: Int
     let flag: String?
     
     private enum CodingKeys: String, CodingKey {
-        case name, alpha3Code, population, flag
+        case name, alpha3Code
+        case populationValue = "population"
+        case flag
+    }
+    
+    var population: String {
+        return String(populationValue)
     }
 }
 
