@@ -20,7 +20,8 @@ final class CountryDetailsViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     private var dataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> {
-        return RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> (
+        
+        let dataSource = RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> (
             configureCell: { (dataSource, tableView, indexPath, model) -> UITableViewCell in
                 
                 switch model {
@@ -66,6 +67,14 @@ final class CountryDetailsViewController: UIViewController {
                     return cell
                 }
         })
+        
+        // Configure animations
+        
+        dataSource.decideViewTransition = { _, _, _ in
+            return .reload
+        }
+        
+        return dataSource
     }
     
     // MARK: - New instance
