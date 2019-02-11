@@ -12,16 +12,9 @@ import Moya
 
 typealias ResultBlock<T> = (Result<T>) -> Void
 
-/*
- {
- "code": "RUB",
- "name": "Russian ruble",
- "symbol": "₽" (or null)
- }
- */
 struct Currency: Decodable {
     
-    let name: String
+    let name: String?
     let symbol: String?
     
     private enum CodingKeys: String, CodingKey {

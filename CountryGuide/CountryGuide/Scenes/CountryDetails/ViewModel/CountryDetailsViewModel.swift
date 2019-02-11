@@ -76,11 +76,20 @@ final class CountryDetailsViewModel: StateViewModel {
         
         if !summary.currencies.isEmpty {
             
-            models.append(.sectionTitle(text: "Currencies".uppercased()))
-            models.append(contentsOf: summary.currencies.map {
-                let model = CurrencyCellModel(currencyName: $0.name, currencySymbol: $0.symbol ?? "-")
+            let validCurrencies: [CountryPropertyCellModel] = summary.currencies.compactMap {
+                
+                // Make sure every currency has non-empty name and symbol.
+                
+                guard let name = $0.name, let symbol = $0.symbol else { return nil }
+                
+                let model = CurrencyCellModel(currencyName: name, currencySymbol: symbol)
                 return .currency(model: model)
-            })
+            }
+            
+            if !validCurrencies.isEmpty {
+                models.append(.sectionTitle(text: "Currencies".uppercased()))
+                models.append(contentsOf: validCurrencies)
+            }
         }
         
         // Borders
