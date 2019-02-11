@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Nyv-97-KPY">
-    <device id="retina3_5" orientation="portrait">
+    <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController storyboardIdentifier="country-details" title="Details" id="fvs-rW-fXV" customClass="CountryDetailsViewController" customModule="CountryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2wZ-g2-dD3">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2tc-6L-CgE">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="basic-info" rowHeight="100" id="154-Yi-clf" customClass="CountryBasicInfoTableViewCell" customModule="CountryGuide" customModuleProvider="target">
@@ -98,7 +98,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Section title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aph-Sc-ZZ3">
-                                                    <rect key="frame" x="15" y="12" width="351" height="21"/>
+                                                    <rect key="frame" x="15" y="12" width="289" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.4941176471" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
@@ -106,7 +106,7 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="aph-Sc-ZZ3" secondAttribute="bottom" constant="10.5" id="AtM-ib-dLC"/>
-                                                <constraint firstAttribute="trailing" secondItem="aph-Sc-ZZ3" secondAttribute="trailing" constant="-46" id="GVm-Vo-QJJ"/>
+                                                <constraint firstAttribute="trailing" secondItem="aph-Sc-ZZ3" secondAttribute="trailing" constant="16" id="GVm-Vo-QJJ"/>
                                                 <constraint firstItem="aph-Sc-ZZ3" firstAttribute="leading" secondItem="bCl-Ly-Dgn" secondAttribute="leading" constant="15" id="IO8-mN-F1d"/>
                                                 <constraint firstItem="aph-Sc-ZZ3" firstAttribute="top" secondItem="bCl-Ly-Dgn" secondAttribute="top" constant="12" id="zIV-hy-5Ep"/>
                                             </constraints>
@@ -124,6 +124,9 @@
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UQj-hk-HRO">
                                                     <rect key="frame" x="285" y="9.5" width="19" height="33.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="19" id="6Ae-9O-98g"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="28"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
@@ -149,44 +152,51 @@
                                             <outlet property="currencySymbolLabel" destination="UQj-hk-HRO" id="2zD-Lb-IUr"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="border-country" rowHeight="53" id="52x-Eg-ICz" customClass="BorderCountryTableViewCell" customModule="CountryGuide" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="225" width="320" height="53"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="border-country" rowHeight="86" id="52x-Eg-ICz" customClass="BorderCountryTableViewCell" customModule="CountryGuide" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="225" width="320" height="86"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="52x-Eg-ICz" id="f3c-uk-U2T">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="52.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="85.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1,000,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eN3-mh-we7">
-                                                    <rect key="frame" x="218" y="15.5" width="86" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                                    <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-er-neX">
-                                                    <rect key="frame" x="15" y="12" width="108" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillProportionally" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="VfH-le-4Iq">
+                                                    <rect key="frame" x="16" y="12" width="288" height="61.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="asdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVA-er-neX">
+                                                            <rect key="frame" x="0.0" y="20.5" width="193.5" height="20.5"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <nil key="textColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" asdf asd asdf as" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UwR-cS-Ke9">
+                                                            <rect key="frame" x="209.5" y="20" width="78.5" height="21.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="78.5" id="NOe-3H-XOy"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
+                                                            <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="eN3-mh-we7" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fVA-er-neX" secondAttribute="trailing" constant="16" id="Ipu-In-Bg3"/>
-                                                <constraint firstItem="fVA-er-neX" firstAttribute="leading" secondItem="f3c-uk-U2T" secondAttribute="leading" constant="15" id="RS2-vn-apz"/>
-                                                <constraint firstItem="eN3-mh-we7" firstAttribute="centerY" secondItem="f3c-uk-U2T" secondAttribute="centerY" id="Sxy-I7-5yL"/>
-                                                <constraint firstItem="fVA-er-neX" firstAttribute="top" secondItem="f3c-uk-U2T" secondAttribute="top" constant="12" id="aBQ-Qf-3md"/>
-                                                <constraint firstAttribute="trailing" secondItem="eN3-mh-we7" secondAttribute="trailing" constant="16" id="kJb-Yt-en2"/>
-                                                <constraint firstAttribute="bottom" secondItem="fVA-er-neX" secondAttribute="bottom" constant="10.5" id="mF7-gQ-7Jv"/>
+                                                <constraint firstItem="VfH-le-4Iq" firstAttribute="leading" secondItem="f3c-uk-U2T" secondAttribute="leading" constant="16" id="ONi-Z3-DpV"/>
+                                                <constraint firstAttribute="bottom" secondItem="VfH-le-4Iq" secondAttribute="bottom" constant="12" id="Sly-A1-Hfe"/>
+                                                <constraint firstItem="VfH-le-4Iq" firstAttribute="top" secondItem="f3c-uk-U2T" secondAttribute="top" constant="12" id="UTB-st-8k9"/>
+                                                <constraint firstAttribute="trailing" secondItem="VfH-le-4Iq" secondAttribute="trailing" constant="16" id="Yat-Mw-VzT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="countryNameLabel" destination="fVA-er-neX" id="JwT-6s-hwr"/>
-                                            <outlet property="countryPopulatioLabel" destination="eN3-mh-we7" id="mGV-0i-0tv"/>
+                                            <outlet property="countryPopulationLabel" destination="UwR-cS-Ke9" id="Ujw-Wb-oaf"/>
+                                            <outlet property="countryPopulationLabelWidthConstraint" destination="NOe-3H-XOy" id="oKa-Qa-YJB"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="CFd-S9-znz">
-                                <rect key="frame" x="150" y="262" width="20" height="20"/>
+                                <rect key="frame" x="150" y="306" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -207,7 +217,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="poM-7H-e5D" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="811.875" y="37.5"/>
+            <point key="canvasLocation" x="811.875" y="36.971830985915496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="GOv-1g-0yv">
@@ -230,11 +240,11 @@
             <objects>
                 <viewController storyboardIdentifier="country-list" id="XEA-gK-hPJ" customClass="CountryListViewController" customModule="CountryGuide" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Twx-TL-Pvu">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="1dZ-if-g8z">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="country" textLabel="7t2-kv-vUB" detailTextLabel="Voo-Mo-bWr" rowHeight="57" style="IBUITableViewCellStyleValue1" id="dEf-Nb-qFv" customClass="CountryListTableViewCell" customModule="CountryGuide" customModuleProvider="target">
@@ -264,7 +274,7 @@
                                 </prototypes>
                             </tableView>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Xa9-oK-hCV">
-                                <rect key="frame" x="150" y="262" width="20" height="20"/>
+                                <rect key="frame" x="150" y="306" width="20" height="20"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

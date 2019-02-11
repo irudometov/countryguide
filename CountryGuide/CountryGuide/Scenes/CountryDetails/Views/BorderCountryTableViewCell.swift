@@ -13,5 +13,21 @@ final class BorderCountryTableViewCell: UITableViewCell {
     static let reusetIdentifier = "border-country"
     
     @IBOutlet weak var countryNameLabel: UILabel!
-    @IBOutlet weak var countryPopulatioLabel: UILabel!
+    @IBOutlet weak var countryPopulationLabel: UILabel!
+    @IBOutlet weak var countryPopulationLabelWidthConstraint: NSLayoutConstraint!
+    
+    private func adjustPopulationLabelWidth() {
+        
+        guard let widthConstraint = countryPopulationLabelWidthConstraint,
+            let label = countryPopulationLabel else {
+                return
+        }
+        
+        widthConstraint.constant = label.intrinsicContentSize.width
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        adjustPopulationLabelWidth()
+    }
 }

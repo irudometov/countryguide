@@ -6,6 +6,7 @@
 //  Copyright © 2019 Ilya Rudometov. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 protocol IErrorView {

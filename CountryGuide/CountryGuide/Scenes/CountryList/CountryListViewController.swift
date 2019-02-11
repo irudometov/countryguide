@@ -99,8 +99,7 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
         
         tableView.rx
             .modelSelected(Country.self)
-            .subscribe({ [weak self] value in
-                
+            .subscribe({ [weak self] value in                
                 guard let this = self else { return }
                 
                 if let indexPath = this.tableView.indexPathForSelectedRow {
