@@ -9,14 +9,18 @@
 import Foundation
 import RxCocoa
 import RxDataSources
+import Reachability
+import RxReachability
 import RxSwift
 
 final class CountryDetailsViewModel {
     
     private let countryProvider: ICountryProvider
-    
     private let country: Country
     private var countrySummary = BehaviorRelay<CountrySummaryInfo?>(value: nil)
+    
+    private var isReachable: Observable<Bool>?
+    private let disposeBag = DisposeBag()
     
     private var summary: CountrySummaryInfo? {
         didSet {
@@ -46,6 +50,11 @@ final class CountryDetailsViewModel {
     
     func onViewWillAppear() {
         preloadCountryInfo()
+        startTrackingReachability()
+    }
+    
+    func onViewWillDisppear() {
+        stopTrackingReachability()
     }
     
     private func preloadCountryInfo() {
@@ -96,5 +105,28 @@ final class CountryDetailsViewModel {
         }
         
         return models
+    }
+}
+
+private extension CountryDetailsViewModel {
+    
+    // MARK: - Reachability
+    
+    func startTrackingReachability() {
+        
+        guard isReachable == nil else { return }
+        
+        isReachable =  Reachability.rx.isReachable.asObservable()
+        isReachable?.bind(onNext: { [weak self] hasConnection in
+            guard let this = self else { return }
+            
+            if this.countrySummary.value == nil {
+                this.preloadCountryInfo()
+            }
+        }).disposed(by: disposeBag)
+    }
+    
+    func stopTrackingReachability() {
+        isReachable = nil
     }
 }

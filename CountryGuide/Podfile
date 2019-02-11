@@ -7,7 +7,9 @@ def shared_pods
   pod 'Moya', '~> 12'
   pod 'RxCocoa'
   pod 'RxDataSources'
+  pod 'RxReachability'
   pod 'RxSwift'
+  
 end
 
 target 'CountryGuide' do

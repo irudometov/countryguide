@@ -8,6 +8,8 @@
 
 import UIKit
 import RxCocoa
+import Reachability
+import RxReachability
 import RxSwift
 
 protocol CountryListDelegate: AnyObject {
@@ -49,6 +51,11 @@ final class CountryListViewController: UIViewController {
         viewModel.onViewWillAppear()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.onViewWillDisppear()
+    }
+    
     private func setupRefreshControl() {
         guard let tableView = tableView else { return }
         
@@ -61,9 +68,7 @@ final class CountryListViewController: UIViewController {
             .filter { $0 }
             .bind { [unowned self] isRefreshing in
                 guard isRefreshing else { return }
-                self.viewModel.refreshData() { [weak self] _ in
-                    self?.tableView.refreshControl?.endRefreshing()
-                }
+                self.viewModel.refreshData()
             }
             .disposed(by: disposeBag)
     }
@@ -79,18 +84,6 @@ final class CountryListViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        // Loading status
-        /*
-        viewModel.isLoading
-            .asObservable()
-            .bind { [weak self] isLoading in
-                guard let this = self else { return }
-                
-                this.tableView.isHidden = isLoading
-                this.activityIndicator.animateLoading(isLoading)                
-            }
-            .disposed(by: disposeBag)
-        */
         // Table view
         
         tableView.dataSource = nil
@@ -136,6 +129,12 @@ final class CountryListViewController: UIViewController {
         
         tableView.isHidden = state != .ready
         activityIndicator.animateLoading(state == .loading)
+        
+        if state != .loading,
+            let refreshControl = tableView.refreshControl,
+            refreshControl.isRefreshing {
+            refreshControl.endRefreshing()
+        }
         
         if case .error(let error) = state {
             displayError(error)

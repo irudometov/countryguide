@@ -8,32 +8,36 @@
 
 import Foundation
 import RxCocoa
+import Reachability
+import RxReachability
 import RxSwift
 
-final class CountryListViewModel {
+final class CountryListViewModel: StateViewModel {
     
     private let countryProvider: ICountryProvider
     
-    let state = BehaviorRelay<ViewModelState>(value: .initial)
-    let title = BehaviorRelay<String>(value: "Countries")
+//    let state = BehaviorRelay<ViewModelState>(value: .initial)
+//    let title = BehaviorRelay<String>(value: "Countries")
     private (set) var countries = BehaviorRelay<[Country]>(value: [])
     
     // MARK: - init
     
     init(countryProvider: ICountryProvider) {
         self.countryProvider = countryProvider
+        super.init()
+        title.accept("Countries")
     }
     
-    func onViewWillAppear() {
+    override func preloadDataIfRequired() {
         guard countries.value.isEmpty else { return }
         loadCountries()
     }
     
-    func refreshData(completion: ResultBlock<Bool>? = nil) {
-        loadCountries(animateLoading: countries.value.isEmpty, completion: completion)
+    func refreshData() {
+        loadCountries(animateLoading: countries.value.isEmpty)
     }
     
-    private func loadCountries(animateLoading: Bool = true, completion: ResultBlock<Bool>? = nil) {
+    private func loadCountries(animateLoading: Bool = true) {
         
         guard !state.value.isLoading else { return }
         
@@ -48,17 +52,9 @@ final class CountryListViewModel {
             case .success(let countries):
                 this.countries.accept(countries)
                 this.state.accept(.ready)
-                completion?(.success(true))
             case .failure(let error):
                 this.state.accept(.error(lastError: error))
-                completion?(.failure(error))
             }
         }
-    }
-    
-    private func testError() -> Error {
-        return NSError(domain: "com.irudometov.CountryGuide.error",
-                       code: 1,
-                       userInfo: [NSLocalizedDescriptionKey: "Test error"])
     }
 }

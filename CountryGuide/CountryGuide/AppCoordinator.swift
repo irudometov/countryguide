@@ -8,12 +8,16 @@
 
 import Foundation
 import UIKit
+import Reachability
+import RxReachability
+import RxSwift
 
 final class AppCoordinator {
     
     private let countryProvider: ICountryProvider
     private let window: UIWindow
     private var rootNavigationController: UINavigationController!
+    private let reachability = Reachability()
     
     // MARK: - init
     
@@ -31,6 +35,8 @@ final class AppCoordinator {
         
         window.rootViewController = rootNavigationController
         window.makeKeyAndVisible()
+        
+        try? reachability?.startNotifier()
     }
     
     private func showDetails(of selectedCountry: Country) {

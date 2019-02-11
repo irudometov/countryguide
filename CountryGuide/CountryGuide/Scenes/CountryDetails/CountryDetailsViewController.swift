@@ -99,6 +99,11 @@ final class CountryDetailsViewController: UIViewController {
         viewModel.onViewWillAppear()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.onViewWillDisppear()
+    }
+    
     private func setupBindings() {
         
         // Title
@@ -115,8 +120,7 @@ final class CountryDetailsViewController: UIViewController {
         viewModel.isLoading
         .asObservable()
             .bind { [weak self] isLoading in
-                guard let this = self else { return }
-                
+                guard let this = self else { return }                
                 this.tableView.isHidden = isLoading
                 this.activityIndicator.animateLoading(isLoading)
             }
