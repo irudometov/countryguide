@@ -102,15 +102,16 @@ final class CountryListViewController: UIViewController {
             .modelSelected(Country.self)
             .subscribe({ [weak self] value in
                 
-                guard let this = self,
-                    let country = value.element,
-                    let delegate = this.delegate else { return }
-                
-                delegate.didSelectCountry(country)
+                guard let this = self else { return }
                 
                 if let indexPath = this.tableView.indexPathForSelectedRow {
                     this.tableView.deselectRow(at: indexPath, animated: true)
                 }
+                
+                guard let country = value.element,
+                    let delegate = this.delegate else { return }
+                
+                delegate.didSelectCountry(country)
             })
             .disposed(by: disposeBag)
         
@@ -156,7 +157,7 @@ private extension CountryListViewController {
         
         errorView.textLabel.text = error?.localizedDescription ?? "Unknown error has occured"
         errorView.onRetry = { [weak self] in
-            self?.viewModel.refreshData()
+            self?.viewModel.preloadDataIfRequired()
         }
         
         view.addSubview(errorView)
