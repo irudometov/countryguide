@@ -62,8 +62,8 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer 
                     // Border country
                     
                 case .border(let country):
-                    guard let cell = tableView.dequeueReusableCell(withIdentifier: BorderCountryTableViewCell.reusetIdentifier, for: indexPath) as? BorderCountryTableViewCell else {
-                        fatalError("Unsupported cell type: \(BorderCountryTableViewCell.self) for row at index path \(indexPath)")
+                    guard let cell = tableView.dequeueReusableCell(withIdentifier: CountryTableViewCell.reuseIdentifier, for: indexPath) as? CountryTableViewCell else {
+                        fatalError("Unsupported cell type: \(CountryTableViewCell.self) for row at index path \(indexPath)")
                     }
                     cell.countryNameLabel.text = country.name
                     cell.countryPopulationLabel.text = country.population
@@ -132,6 +132,11 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer 
         
         tableView.dataSource = nil
         tableView.delegate = nil
+        
+        // Register cell
+        
+        let nib = UINib(nibName: "CountryTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CountryTableViewCell.reuseIdentifier)
         
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))

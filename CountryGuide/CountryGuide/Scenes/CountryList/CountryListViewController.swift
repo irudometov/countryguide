@@ -88,18 +88,23 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
         tableView.dataSource = nil
         tableView.delegate = nil
         
+        // Register cell
+        
+        let nib = UINib(nibName: "CountryTableViewCell", bundle: nil)
+        tableView.register(nib, forCellReuseIdentifier: CountryTableViewCell.reuseIdentifier)
+        
         viewModel.countries
         .asObservable()
-            .bind(to: tableView.rx.items(cellIdentifier: CountryListTableViewCell.reuseIdentifier, cellType: CountryListTableViewCell.self)) { (_, country, cell) in
-                
-                cell.textLabel?.text = country.name
-                cell.detailTextLabel?.text = country.population
+            .bind(to: tableView.rx.items(cellIdentifier: CountryTableViewCell.reuseIdentifier,
+                                         cellType: CountryTableViewCell.self)) { (_, country, cell) in                
+                cell.countryNameLabel.text = country.name
+                cell.countryPopulationLabel.text = country.population
                 
         }.disposed(by: disposeBag)
         
         tableView.rx
             .modelSelected(Country.self)
-            .subscribe({ [weak self] value in                
+            .subscribe({ [weak self] value in
                 guard let this = self else { return }
                 
                 if let indexPath = this.tableView.indexPathForSelectedRow {
