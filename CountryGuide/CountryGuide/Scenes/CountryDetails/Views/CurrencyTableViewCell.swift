@@ -14,4 +14,21 @@ final class CurrencyTableViewCell: UITableViewCell {
     
     @IBOutlet weak var currencyNameLabel: UILabel!
     @IBOutlet weak var currencySymbolLabel: UILabel!
+    @IBOutlet weak var currencySymbolLabelWidthConstraint: NSLayoutConstraint!
+    
+    private func adjustPopulationLabelWidth() {
+        
+        guard let widthConstraint = currencySymbolLabelWidthConstraint,
+            let label = currencySymbolLabel else {
+                return
+        }
+        
+        widthConstraint.constant = label.intrinsicContentSize.width
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        adjustPopulationLabelWidth()
+    }
+
 }
