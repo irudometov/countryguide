@@ -36,6 +36,7 @@
 		36FA4E432210AACA008A88EB /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E422210AACA008A88EB /* ErrorView.swift */; };
 		36FA4E452210AAF5008A88EB /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FA4E442210AAF5008A88EB /* ErrorView.xib */; };
 		36FA4E472210AC28008A88EB /* UIView+LoadFromNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E462210AC28008A88EB /* UIView+LoadFromNib.swift */; };
+		A782DF9D58E8B0D12E7CE9D7 /* Pods_CountryGuideTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FEE899995E62739F96EFDEAE /* Pods_CountryGuideTests.framework */; };
 		BB1BFA8A14C37391C377AEAA /* Pods_CountryGuide.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */; };
 /* End PBXBuildFile section */
 
@@ -83,9 +84,12 @@
 		36FA4E422210AACA008A88EB /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		36FA4E442210AAF5008A88EB /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		36FA4E462210AC28008A88EB /* UIView+LoadFromNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LoadFromNib.swift"; sourceTree = "<group>"; };
+		377D0DD53C26B13E56A74B46 /* Pods-CountryGuideTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuideTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuideTests/Pods-CountryGuideTests.debug.xcconfig"; sourceTree = "<group>"; };
 		9C091C1E01C6E06C502EAEFA /* Pods-CountryGuide.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.debug.xcconfig"; sourceTree = "<group>"; };
 		AA9D9E8FC5F7567C1D0D09F9 /* Pods-CountryGuide.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuide.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide.release.xcconfig"; sourceTree = "<group>"; };
 		F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryGuide.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FEE899995E62739F96EFDEAE /* Pods_CountryGuideTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CountryGuideTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFBB1893BED8EFBD2895DA93 /* Pods-CountryGuideTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CountryGuideTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CountryGuideTests/Pods-CountryGuideTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,6 +105,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A782DF9D58E8B0D12E7CE9D7 /* Pods_CountryGuideTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,8 @@
 			children = (
 				9C091C1E01C6E06C502EAEFA /* Pods-CountryGuide.debug.xcconfig */,
 				AA9D9E8FC5F7567C1D0D09F9 /* Pods-CountryGuide.release.xcconfig */,
+				377D0DD53C26B13E56A74B46 /* Pods-CountryGuideTests.debug.xcconfig */,
+				FFBB1893BED8EFBD2895DA93 /* Pods-CountryGuideTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -289,6 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				F5BCED27EA6B727981C44991 /* Pods_CountryGuide.framework */,
+				FEE899995E62739F96EFDEAE /* Pods_CountryGuideTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -319,6 +327,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 36580AE0220A06C400E5C97A /* Build configuration list for PBXNativeTarget "CountryGuideTests" */;
 			buildPhases = (
+				D18D4AEAD8C874FD52BD8517 /* [CP] Check Pods Manifest.lock */,
 				36580AD0220A06C400E5C97A /* Sources */,
 				36580AD1220A06C400E5C97A /* Frameworks */,
 				36580AD2220A06C400E5C97A /* Resources */,
@@ -454,6 +463,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CountryGuide/Pods-CountryGuide-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D18D4AEAD8C874FD52BD8517 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CountryGuideTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -685,6 +716,7 @@
 		};
 		36580AE1220A06C400E5C97A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 377D0DD53C26B13E56A74B46 /* Pods-CountryGuideTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -706,6 +738,7 @@
 		};
 		36580AE2220A06C400E5C97A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFBB1893BED8EFBD2895DA93 /* Pods-CountryGuideTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";

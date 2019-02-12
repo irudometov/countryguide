@@ -23,7 +23,7 @@ struct CountrySummaryInfo {
     }
     
     var population: String {
-        return String(info.population)
+        return info.populationString
     }
     
     var currencies: [Currency] {

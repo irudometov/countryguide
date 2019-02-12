@@ -67,7 +67,7 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
                         fatalError("Unsupported cell type: \(CountryTableViewCell.self) for row at index path \(indexPath)")
                     }
                     cell.countryNameLabel.text = country.name
-                    cell.countryPopulationLabel.text = country.population
+                    cell.countryPopulationLabel.text = country.populationString
                     cell.selectionStyle = .none
                     return cell
                 }

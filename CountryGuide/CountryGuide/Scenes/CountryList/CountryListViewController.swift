@@ -99,7 +99,7 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
             .bind(to: tableView.rx.items(cellIdentifier: CountryTableViewCell.reuseIdentifier,
                                          cellType: CountryTableViewCell.self)) { (_, country, cell) in
                 cell.countryNameLabel.text = country.name
-                cell.countryPopulationLabel.text = country.population
+                cell.countryPopulationLabel.text = country.populationString
                 
         }.disposed(by: disposeBag)
         

@@ -14,4 +14,8 @@ end
 
 target 'CountryGuide' do
 	shared_pods
+    
+    target 'CountryGuideTests' do
+        inherit! :search_paths
+    end
 end
