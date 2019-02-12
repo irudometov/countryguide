@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		360C34C0221156BB00BB3DCD /* StateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360C34BF221156BB00BB3DCD /* StateViewModel.swift */; };
 		363D4EB82212AF36000C0188 /* CountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 363D4EB72212AF36000C0188 /* CountryTableViewCell.xib */; };
+		363D4EBA2212B4E0000C0188 /* IStateTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D4EB92212B4E0000C0188 /* IStateTableView.swift */; };
+		363D4EBC2212B5BF000C0188 /* IStateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363D4EBB2212B5BF000C0188 /* IStateViewModel.swift */; };
 		36580AC4220A06C200E5C97A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36580AC3220A06C200E5C97A /* AppDelegate.swift */; };
 		36580AC9220A06C200E5C97A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36580AC7220A06C200E5C97A /* Main.storyboard */; };
 		36580ACB220A06C400E5C97A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 36580ACA220A06C400E5C97A /* Assets.xcassets */; };
@@ -28,7 +30,6 @@
 		36FA4E2D22102F41008A88EB /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */; };
 		36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */; };
 		36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */; };
-		36FA4E342210609C008A88EB /* BorderCountryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */; };
 		36FA4E3A221074B7008A88EB /* CountryBasicInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */; };
 		36FA4E3D2210A442008A88EB /* ViewModelState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3C2210A442008A88EB /* ViewModelState.swift */; };
 		36FA4E402210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E3F2210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift */; };
@@ -51,6 +52,8 @@
 /* Begin PBXFileReference section */
 		360C34BF221156BB00BB3DCD /* StateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateViewModel.swift; sourceTree = "<group>"; };
 		363D4EB72212AF36000C0188 /* CountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CountryTableViewCell.xib; sourceTree = "<group>"; };
+		363D4EB92212B4E0000C0188 /* IStateTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStateTableView.swift; sourceTree = "<group>"; };
+		363D4EBB2212B5BF000C0188 /* IStateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IStateViewModel.swift; sourceTree = "<group>"; };
 		36580AC0220A06C200E5C97A /* CountryGuide.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CountryGuide.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		36580AC3220A06C200E5C97A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		36580AC8220A06C200E5C97A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -74,7 +77,6 @@
 		36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCellModel.swift; sourceTree = "<group>"; };
 		36FA4E3122105E59008A88EB /* CountryPropertyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryPropertyCellModel.swift; sourceTree = "<group>"; };
-		36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BorderCountryTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryBasicInfoTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E3C2210A442008A88EB /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
 		36FA4E3F2210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIActivityIndicatorView+Ex.swift"; sourceTree = "<group>"; };
@@ -117,6 +119,8 @@
 		360C34BE221156A500BB3DCD /* StateViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				363D4EBB2212B5BF000C0188 /* IStateViewModel.swift */,
+				363D4EB92212B4E0000C0188 /* IStateTableView.swift */,
 				36FA4E3C2210A442008A88EB /* ViewModelState.swift */,
 				360C34BF221156BB00BB3DCD /* StateViewModel.swift */,
 			);
@@ -238,7 +242,6 @@
 			children = (
 				36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */,
 				36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */,
-				36FA4E332210609C008A88EB /* BorderCountryTableViewCell.swift */,
 				36FA4E39221074B7008A88EB /* CountryBasicInfoTableViewCell.swift */,
 			);
 			path = Views;
@@ -467,6 +470,7 @@
 				36FA4E3D2210A442008A88EB /* ViewModelState.swift in Sources */,
 				367475E32211B0DA007D4766 /* IErrorViewContainer.swift in Sources */,
 				36FA4E3222105E59008A88EB /* CountryPropertyCellModel.swift in Sources */,
+				363D4EBC2212B5BF000C0188 /* IStateViewModel.swift in Sources */,
 				36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */,
 				366CBFB3220CA7AE00707B8E /* CountryDetailsViewController.swift in Sources */,
 				360C34C0221156BB00BB3DCD /* StateViewModel.swift in Sources */,
@@ -477,10 +481,10 @@
 				36580AF0220A0E2F00E5C97A /* AppCoordinator.swift in Sources */,
 				36580AF5220A182A00E5C97A /* CountryTableViewCell.swift in Sources */,
 				36580AEE220A0DDE00E5C97A /* CountryListViewModel.swift in Sources */,
+				363D4EBA2212B4E0000C0188 /* IStateTableView.swift in Sources */,
 				36FA4E3A221074B7008A88EB /* CountryBasicInfoTableViewCell.swift in Sources */,
 				36580AF2220A105D00E5C97A /* APIService.swift in Sources */,
 				366CBFB1220CA7A500707B8E /* CountryDetailsViewModel.swift in Sources */,
-				36FA4E342210609C008A88EB /* BorderCountryTableViewCell.swift in Sources */,
 				36580AE5220A0A3900E5C97A /* RestCountriesService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

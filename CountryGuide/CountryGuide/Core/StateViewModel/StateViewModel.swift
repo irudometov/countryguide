@@ -12,7 +12,7 @@ import Reachability
 import RxReachability
 import RxSwift
 
-class StateViewModel {
+class StateViewModel: IStateViewModel {
     
     let title = BehaviorRelay<String>(value: "")
     let state = BehaviorRelay<ViewModelState>(value: .initial)
@@ -44,7 +44,7 @@ class StateViewModel {
         
         guard isReachable == nil else { return }
         
-        isReachable =  Reachability.rx.isReachable.asObservable()
+        isReachable = Reachability.rx.isReachable.asObservable()
         isReachable?.bind(onNext: { [weak self] hasConnection in
             self?.reachabilityStatusChanged(isReachable: hasConnection)
         }).disposed(by: disposeBag)

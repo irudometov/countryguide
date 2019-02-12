@@ -11,7 +11,7 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-final class CountryDetailsViewController: UIViewController, IErrorViewContainer {
+final class CountryDetailsViewController: UIViewController, IErrorViewContainer, IStateTableView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -19,7 +19,8 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer 
     // IErrorViewContainer
     var errorView: ErrorView?
     
-    private var viewModel: CountryDetailsViewModel!
+    // IStateViewModel
+    var viewModel: CountryDetailsViewModel!
     private let disposeBag = DisposeBag()
     
     private var dataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> {
@@ -141,19 +142,5 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer 
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-    }
-    
-    private func applyState(_ state: ViewModelState) {
-        
-        tableView.isHidden = !state.isReady
-        activityIndicator.animateLoading(state.isLoading)
-        
-        if case .error(let error) = state {
-            displayError(error) { [weak self] in
-                self?.viewModel.preloadDataIfRequired()
-            }
-        } else {
-            hideErrorView()
-        }
     }
 }

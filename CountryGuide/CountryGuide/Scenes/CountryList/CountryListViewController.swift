@@ -14,7 +14,7 @@ protocol CountryListDelegate: AnyObject {
     func didSelectCountry(_ country: Country)
 }
 
-final class CountryListViewController: UIViewController, IErrorViewContainer {
+final class CountryListViewController: UIViewController, IErrorViewContainer, IStateTableView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -22,7 +22,8 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
     // IErrorViewContainer
     var errorView: ErrorView?
     
-    private var viewModel: CountryListViewModel!
+    // IStateViewModel
+    var viewModel: CountryListViewModel!
     private let disposeBag = DisposeBag()
     
     weak var delegate: CountryListDelegate?
@@ -96,7 +97,7 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
         viewModel.countries
         .asObservable()
             .bind(to: tableView.rx.items(cellIdentifier: CountryTableViewCell.reuseIdentifier,
-                                         cellType: CountryTableViewCell.self)) { (_, country, cell) in                
+                                         cellType: CountryTableViewCell.self)) { (_, country, cell) in
                 cell.countryNameLabel.text = country.name
                 cell.countryPopulationLabel.text = country.population
                 
@@ -127,25 +128,5 @@ final class CountryListViewController: UIViewController, IErrorViewContainer {
                 self?.applyState(state)
             })
             .disposed(by: disposeBag)
-    }
-    
-    private func applyState(_ state: ViewModelState) {
-        
-        tableView.isHidden = !state.isReady
-        activityIndicator.animateLoading(state.isLoading)
-        
-        if !state.isLoading,
-            let refreshControl = tableView.refreshControl,
-            refreshControl.isRefreshing {
-            refreshControl.endRefreshing()
-        }
-        
-        if case .error(let error) = state {
-            displayError(error) { [weak self] in
-                self?.viewModel.preloadDataIfRequired()
-            }
-        } else {
-            hideErrorView()
-        }
     }
 }

@@ -22,13 +22,16 @@ protocol IErrorViewContainer: NSObjectProtocol {
     associatedtype ViewType: UIView & IErrorView
     
     var errorView: ViewType? { get set }
-    var view: UIView! { get }
     
     func displayError(_ error: Error?, onRetry: IErrorView.RetryBlock?)
     func hideErrorView()
 }
 
-extension IErrorViewContainer {
+extension IErrorViewContainer where Self : UIViewController {
+    
+    private var defaultHorizontalSpace: CGFloat {
+        return CGFloat(16)
+    }
     
     func displayError(_ error: Error?, onRetry: IErrorView.RetryBlock?) {
         
@@ -44,7 +47,7 @@ extension IErrorViewContainer {
         errorView.translatesAutoresizingMaskIntoConstraints = false
         errorView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         errorView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
-        errorView.widthAnchor.constraint(equalToConstant: max(0, view.bounds.width - 32)).isActive = true
+        errorView.widthAnchor.constraint(equalToConstant: max(0, view.bounds.width - defaultHorizontalSpace * 2)).isActive = true
         view.bringSubviewToFront(errorView)
         
         self.errorView = errorView
