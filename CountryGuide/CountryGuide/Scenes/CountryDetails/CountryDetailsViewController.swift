@@ -68,6 +68,7 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
                     }
                     cell.countryNameLabel.text = country.name
                     cell.countryPopulationLabel.text = country.population
+                    cell.selectionStyle = .none
                     return cell
                 }
         })
