@@ -97,9 +97,7 @@ final class CountryDetailsViewModel: StateViewModel {
         if !summary.borders.isEmpty {
             
             models.append(.sectionTitle(text: "Neighboring countries".uppercased()))
-            models.append(contentsOf: summary.borders.map {
-                return .border(country: $0)
-            })
+            models.append(contentsOf: summary.borders.map { .border(country: $0) })
         }
         
         return models
