@@ -18,31 +18,25 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="q7x-7l-FJ6">
-                        <rect key="frame" x="16" y="11" width="343.5" height="21.5"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJm-1A-061">
-                                <rect key="frame" x="0.0" y="0.0" width="255" height="21.5"/>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1,000,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-I7-TVH">
-                                <rect key="frame" x="267" y="0.5" width="76.5" height="20.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="cfe-I7-TVH" firstAttribute="leading" secondItem="LJm-1A-061" secondAttribute="trailing" constant="12" id="VKR-Kj-J0v"/>
-                        </constraints>
-                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJm-1A-061">
+                        <rect key="frame" x="16" y="11" width="119.5" height="21.5"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="1,000,000" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-I7-TVH">
+                        <rect key="frame" x="282.5" y="11.5" width="76.5" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="q7x-7l-FJ6" secondAttribute="trailing" constant="15.5" id="0QJ-TD-ErE"/>
-                    <constraint firstAttribute="bottom" secondItem="q7x-7l-FJ6" secondAttribute="bottom" constant="11" id="8Am-YK-vWN"/>
-                    <constraint firstItem="q7x-7l-FJ6" firstAttribute="leading" secondItem="0qM-UU-a05" secondAttribute="leading" constant="16" id="9H8-xA-5NX"/>
-                    <constraint firstItem="q7x-7l-FJ6" firstAttribute="top" secondItem="0qM-UU-a05" secondAttribute="top" constant="11" id="SbR-Ar-J21"/>
+                    <constraint firstItem="LJm-1A-061" firstAttribute="leading" secondItem="0qM-UU-a05" secondAttribute="leading" constant="16" id="7OK-0n-XCz"/>
+                    <constraint firstAttribute="bottom" secondItem="LJm-1A-061" secondAttribute="bottom" constant="11" id="HSb-3h-zha"/>
+                    <constraint firstAttribute="trailing" secondItem="cfe-I7-TVH" secondAttribute="trailing" constant="16" id="IjU-XC-Mv5"/>
+                    <constraint firstItem="cfe-I7-TVH" firstAttribute="centerY" secondItem="0qM-UU-a05" secondAttribute="centerY" id="LSW-9k-hn0"/>
+                    <constraint firstItem="cfe-I7-TVH" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LJm-1A-061" secondAttribute="trailing" constant="12" id="gbR-cb-uTN"/>
+                    <constraint firstItem="LJm-1A-061" firstAttribute="top" secondItem="0qM-UU-a05" secondAttribute="top" constant="11" id="uqD-44-HTo"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
