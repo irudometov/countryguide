@@ -10,10 +10,6 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-protocol CountryListDelegate: AnyObject {
-    func didSelectCountry(_ country: Country)
-}
-
 final class CountryListViewController: UIViewController, IErrorViewContainer, IStateTableView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -26,7 +22,8 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
     var viewModel: CountryListViewModel!
     private let disposeBag = DisposeBag()
     
-    weak var delegate: CountryListDelegate?
+    // Delegate
+    var didSelectCountry: ((Country) -> Void)?
     
     // MARK: - New instance
     
@@ -105,17 +102,15 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
         
         tableView.rx
             .modelSelected(Country.self)
-            .subscribe({ [weak self] value in
+            .bind(onNext: { [weak self] country in
+                
                 guard let this = self else { return }
                 
                 if let indexPath = this.tableView.indexPathForSelectedRow {
                     this.tableView.deselectRow(at: indexPath, animated: true)
                 }
                 
-                guard let country = value.element,
-                    let delegate = this.delegate else { return }
-                
-                delegate.didSelectCountry(country)
+                this.didSelectCountry?(country)
             })
             .disposed(by: disposeBag)
         

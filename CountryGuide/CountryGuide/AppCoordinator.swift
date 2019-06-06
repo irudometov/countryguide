@@ -30,7 +30,7 @@ final class AppCoordinator {
         
         let viewModel = CountryListViewModel(countryProvider: countryProvider)
         let viewController = CountryListViewController.newInstance(viewModel: viewModel)
-        viewController.delegate = self
+        viewController.didSelectCountry = showDetails
         rootNavigationController = UINavigationController(rootViewController: viewController)
         
         window.rootViewController = rootNavigationController
@@ -44,12 +44,5 @@ final class AppCoordinator {
         let viewModel = CountryDetailsViewModel(country: selectedCountry, countryProvider: countryProvider)
         let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
         rootNavigationController.pushViewController(viewController, animated: true)
-    }
-}
-
-extension AppCoordinator: CountryListDelegate {
-    
-    func didSelectCountry(_ selectedCountry: Country) {
-        showDetails(of: selectedCountry)
     }
 }

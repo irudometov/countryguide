@@ -17,7 +17,7 @@ protocol IErrorView {
     var onRetry: RetryBlock? { get set }
 }
 
-protocol IErrorViewContainer: NSObjectProtocol {
+protocol IErrorViewContainer: AnyObject {
     
     associatedtype ViewType: UIView & IErrorView
     
