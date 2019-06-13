@@ -11,10 +11,12 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-final class CountryDetailsViewController: UIViewController, IErrorViewContainer, IStateTableView {
+final class CountryDetailsViewController: UIViewController, IErrorViewContainer, IStateTableView, Coordinated {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
+    
+    var coordinator: ICoordinator?
     
     // IErrorViewContainer
     var errorView: ErrorView?

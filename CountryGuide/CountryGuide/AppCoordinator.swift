@@ -12,12 +12,21 @@ import Reachability
 import RxReachability
 import RxSwift
 
-final class AppCoordinator {
+final class AppCoordinator: NSObject, ICoordinator {
     
     private let countryProvider: ICountryProvider
     private let window: UIWindow
-    private var rootNavigationController: UINavigationController!
     private let reachability = Reachability()
+    
+    let uuid: UUID = UUID()
+    
+    var childCoordinators: [ICoordinator] = [] {
+        didSet {
+            print("child: \(childCoordinators)")
+        }
+    }
+    
+    let navigationController = UINavigationController()
     
     // MARK: - init
     
@@ -31,9 +40,10 @@ final class AppCoordinator {
         let viewModel = CountryListViewModel(countryProvider: countryProvider)
         let viewController = CountryListViewController.newInstance(viewModel: viewModel)
         viewController.didSelectCountry = showDetails
-        rootNavigationController = UINavigationController(rootViewController: viewController)
+        navigationController.viewControllers = [viewController]
+        navigationController.delegate = self
         
-        window.rootViewController = rootNavigationController
+        window.rootViewController = navigationController
         window.makeKeyAndVisible()
         
         try? reachability?.startNotifier()
@@ -41,8 +51,36 @@ final class AppCoordinator {
     
     private func showDetails(of selectedCountry: Country) {
         
-        let viewModel = CountryDetailsViewModel(country: selectedCountry, countryProvider: countryProvider)
-        let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
-        rootNavigationController.pushViewController(viewController, animated: true)
+        let coordinator = CountryDetailsCoordinator(navigationController: navigationController,
+                                                    countryProvider: countryProvider,
+                                                    selectedCountry: selectedCountry)
+        childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
+    private func childDidFinish(_ coordinator: ICoordinator) {
+        guard let index = childCoordinators.firstIndex(where: { coordinator.uuid == $0.uuid }) else { return }
+        childCoordinators.remove(at: index)
+    }
+}
+
+extension AppCoordinator: UINavigationControllerDelegate {
+    
+    func navigationController(_ navigationController: UINavigationController,
+                              didShow viewController: UIViewController,
+                              animated: Bool) {
+        
+        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
+            return
+        }
+        
+        if navigationController.viewControllers.contains(fromViewController) {
+            return
+        }
+        
+        if let coordinatedViewController = fromViewController as? Coordinated,
+            let coordinator = coordinatedViewController.coordinator {
+            childDidFinish(coordinator)
+        }
     }
 }
