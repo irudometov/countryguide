@@ -11,18 +11,15 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
-final class CountryDetailsViewController: UIViewController, IErrorViewContainer, IStateTableView, Coordinated {
+final class CountryDetailsViewController: TypedViewController<CountryDetailsViewModel>, IErrorViewContainer, IStateTableView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-    
-    var coordinator: Coordinator?
     
     // IErrorViewContainer
     var errorView: ErrorView?
     
     // IStateViewModel
-    var viewModel: CountryDetailsViewModel!
     private let disposeBag = DisposeBag()
     
     private var dataSource: RxTableViewSectionedAnimatedDataSource<AnimatableSectionModel<Int, CountryPropertyCellModel>> {
@@ -133,14 +130,5 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
-    }
-}
-
-extension CountryDetailsViewController: Storyboardable {
-    
-    class func newInstance(viewModel: CountryDetailsViewModel) -> Self {
-        let viewController = instantiate(withId: "country-details")
-        viewController.viewModel = viewModel
-        return viewController
     }
 }

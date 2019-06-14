@@ -29,6 +29,7 @@
 		369E7B9D220F371A00CD7961 /* CountryProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369E7B9C220F371A00CD7961 /* CountryProvider.swift */; };
 		36A60B0B22B2628C0056D0B1 /* CountryDetailsCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A60B0A22B2628C0056D0B1 /* CountryDetailsCoordinator.swift */; };
 		36A60B0D22B262B30056D0B1 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A60B0C22B262B30056D0B1 /* Coordinator.swift */; };
+		36E8EEA922B39A1F00A64D7C /* TypedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E8EEA822B39A1F00A64D7C /* TypedViewController.swift */; };
 		36FA4E2B22102ECE008A88EB /* SectionTitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */; };
 		36FA4E2D22102F41008A88EB /* CurrencyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */; };
 		36FA4E302210314A008A88EB /* CurrencyCellModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */; };
@@ -81,6 +82,7 @@
 		369E7B9C220F371A00CD7961 /* CountryProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryProvider.swift; sourceTree = "<group>"; };
 		36A60B0A22B2628C0056D0B1 /* CountryDetailsCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryDetailsCoordinator.swift; sourceTree = "<group>"; };
 		36A60B0C22B262B30056D0B1 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		36E8EEA822B39A1F00A64D7C /* TypedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypedViewController.swift; sourceTree = "<group>"; };
 		36FA4E2A22102ECE008A88EB /* SectionTitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTitleTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E2C22102F41008A88EB /* CurrencyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyTableViewCell.swift; sourceTree = "<group>"; };
 		36FA4E2F2210314A008A88EB /* CurrencyCellModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCellModel.swift; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				36A60B0C22B262B30056D0B1 /* Coordinator.swift */,
+				36E8EEA822B39A1F00A64D7C /* TypedViewController.swift */,
 			);
 			path = Flow;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				36580AEC220A0DCF00E5C97A /* CountryListViewController.swift in Sources */,
 				369E7B9D220F371A00CD7961 /* CountryProvider.swift in Sources */,
 				36FA4E432210AACA008A88EB /* ErrorView.swift in Sources */,
+				36E8EEA922B39A1F00A64D7C /* TypedViewController.swift in Sources */,
 				36FA4E402210A7A2008A88EB /* UIActivityIndicatorView+Ex.swift in Sources */,
 				36FA4E3D2210A442008A88EB /* ViewModelState.swift in Sources */,
 				367475E32211B0DA007D4766 /* IErrorViewContainer.swift in Sources */,

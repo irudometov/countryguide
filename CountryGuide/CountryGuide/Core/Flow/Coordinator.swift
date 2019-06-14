@@ -8,6 +8,8 @@
 
 import UIKit
 
+// MARK: - Protocols
+
 protocol Coordinator {
     
     var uuid: UUID { get }
@@ -18,9 +20,26 @@ protocol Coordinator {
     func start()
 }
 
+extension Coordinator {
+    
+    func pushViewController<VM, VC>(ofType type: VC.Type = VC.self,
+                                    storyboardId: String,
+                                    viewModel: VM)
+        where VC : TypedViewController<VM> {
+            
+            let viewController = VC.newInstance(viewModel: viewModel, storyboardId: storyboardId)
+            viewController.viewModel = viewModel
+            viewController.coordinator = self
+            
+            navigationController.pushViewController(viewController, animated: true)
+    }
+}
+
 protocol Coordinated where Self: UIViewController {
     var coordinator: Coordinator? { get set }
 }
+
+// MARK: - Classes
 
 class BaseCoordinator: Coordinator {
     

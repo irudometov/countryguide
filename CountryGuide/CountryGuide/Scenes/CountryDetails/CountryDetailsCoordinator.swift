@@ -25,9 +25,10 @@ final class CountryDetailsCoordinator: BaseCoordinator {
     }
     
     override func start() {
+        
         let viewModel = CountryDetailsViewModel(country: selectedCountry, countryProvider: countryProvider)
-        let viewController = CountryDetailsViewController.newInstance(viewModel: viewModel)
-        viewController.coordinator = self
-        navigationController.pushViewController(viewController, animated: true)
+        pushViewController(ofType: CountryDetailsViewController.self,
+                           storyboardId: "country-details",
+                           viewModel: viewModel)
     }
 }
