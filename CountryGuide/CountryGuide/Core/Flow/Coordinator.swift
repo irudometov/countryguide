@@ -18,6 +18,10 @@ protocol Coordinator {
     func start()
 }
 
+protocol Coordinated where Self: UIViewController {
+    var coordinator: Coordinator? { get set }
+}
+
 class BaseCoordinator: Coordinator {
     
     let uuid: UUID = UUID()
@@ -82,8 +86,4 @@ extension NavigatableCoordinator: UINavigationControllerDelegate {
             childCoordinatorDidFinish(coordinator)
         }
     }
-}
-
-protocol Coordinated where Self: UIViewController {
-    var coordinator: Coordinator? { get set }
 }

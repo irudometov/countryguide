@@ -25,18 +25,6 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
     // Delegate
     var didSelectCountry: ((Country) -> Void)?
     
-    // MARK: - New instance
-    
-    class func newInstance(viewModel: CountryListViewModel) -> CountryListViewController {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "country-list") as? CountryListViewController else {
-            fatalError("Fail to instantiate a view controller with identifier 'country-list' from a storyboard 'Main'.")
-        }
-        
-        viewController.viewModel = viewModel
-        return viewController
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupRefreshControl()
@@ -123,5 +111,14 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
                 self?.applyState(state)
             })
             .disposed(by: disposeBag)
+    }
+}
+
+extension CountryListViewController: Storyboardable {
+    
+    class func newInstance(viewModel: CountryListViewModel) -> Self {
+        let viewController = instantiate(withId: "country-list")
+        viewController.viewModel = viewModel
+        return viewController
     }
 }

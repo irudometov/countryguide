@@ -84,18 +84,6 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
         return dataSource
     }
     
-    // MARK: - New instance
-    
-    class func newInstance(viewModel: CountryDetailsViewModel) -> CountryDetailsViewController {
-        
-        guard let viewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "country-details") as? CountryDetailsViewController else {
-            fatalError("Fail to instantiate a view controller with identifier 'country-details' from a storyboard 'Main'.")
-        }
-        
-        viewController.viewModel = viewModel
-        return viewController
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupBindings()
@@ -145,5 +133,14 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
         viewModel.sections
             .bind(to: tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
+    }
+}
+
+extension CountryDetailsViewController: Storyboardable {
+    
+    class func newInstance(viewModel: CountryDetailsViewModel) -> Self {
+        let viewController = instantiate(withId: "country-details")
+        viewController.viewModel = viewModel
+        return viewController
     }
 }
