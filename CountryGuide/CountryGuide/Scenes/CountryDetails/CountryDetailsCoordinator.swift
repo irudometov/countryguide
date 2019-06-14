@@ -10,23 +10,33 @@ import UIKit
 
 final class CountryDetailsCoordinator: BaseCoordinator {
     
-    private let countryProvider: ICountryProvider
-    private let selectedCountry: Country
+    struct InputModel {
+        let selectedCountry: Country
+    }
+    
+    struct Dependencies {
+        let countryProvider: ICountryProvider
+        let navigationController: UINavigationController
+    }
+    
+    private let input: InputModel
+    private let dependencies: Dependencies
     
     // MARK: - init
     
-    init(navigationController: UINavigationController,
-         countryProvider: ICountryProvider,
-         selectedCountry: Country) {
+    init(_ input: InputModel,
+         _ dependencies: Dependencies) {
         
-        self.countryProvider = countryProvider
-        self.selectedCountry = selectedCountry
-        super.init(navigationController: navigationController)
+        self.input = input
+        self.dependencies = dependencies
+        super.init(navigationController: dependencies.navigationController)
     }
     
     override func start() {
         
-        let viewModel = CountryDetailsViewModel(country: selectedCountry, countryProvider: countryProvider)
+        let viewModel = CountryDetailsViewModel(country: input.selectedCountry,
+                                                countryProvider: dependencies.countryProvider)
+        
         pushViewController(ofType: CountryDetailsViewController.self,
                            storyboardId: "country-details",
                            viewModel: viewModel)

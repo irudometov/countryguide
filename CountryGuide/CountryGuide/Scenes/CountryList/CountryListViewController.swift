@@ -10,7 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-final class CountryListViewController: UIViewController, IErrorViewContainer, IStateTableView {
+final class CountryListViewController: TypedViewController<CountryListViewModel>, IErrorViewContainer, IStateTableView {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
@@ -19,7 +19,6 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
     var errorView: ErrorView?
     
     // IStateViewModel
-    var viewModel: CountryListViewModel!
     private let disposeBag = DisposeBag()
     
     // Delegate
@@ -111,14 +110,5 @@ final class CountryListViewController: UIViewController, IErrorViewContainer, IS
                 self?.applyState(state)
             })
             .disposed(by: disposeBag)
-    }
-}
-
-extension CountryListViewController: Storyboardable {
-    
-    class func newInstance(viewModel: CountryListViewModel) -> Self {
-        let viewController = instantiate(withId: "country-list")
-        viewController.viewModel = viewModel
-        return viewController
     }
 }

@@ -28,7 +28,7 @@ final class AppCoordinator: NavigatableCoordinator {
     override func start() {
         
         let viewModel = CountryListViewModel(countryProvider: countryProvider)
-        let viewController = CountryListViewController.newInstance(viewModel: viewModel)
+        let viewController = CountryListViewController.newInstance(viewModel: viewModel, storyboardId: "country-list")
         viewController.didSelectCountry = showDetails
         navigationController.viewControllers = [viewController]
         navigationController.delegate = self
@@ -41,9 +41,10 @@ final class AppCoordinator: NavigatableCoordinator {
     
     private func showDetails(of selectedCountry: Country) {
         
-        let coordinator = CountryDetailsCoordinator(navigationController: navigationController,
-                                                    countryProvider: countryProvider,
-                                                    selectedCountry: selectedCountry)
-        addChildCoordinatorAndStart(coordinator)
+        let input = CountryDetailsCoordinator.InputModel(selectedCountry: selectedCountry)
+        let dependencies = CountryDetailsCoordinator.Dependencies(countryProvider: countryProvider,
+                                                                  navigationController: navigationController)
+        
+        addChildCoordinatorAndStart(CountryDetailsCoordinator(input, dependencies))
     }
 }
