@@ -16,7 +16,7 @@ final class CountryDetailsViewController: UIViewController, IErrorViewContainer,
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
     
-    var coordinator: ICoordinator?
+    var coordinator: Coordinator?
     
     // IErrorViewContainer
     var errorView: ErrorView?

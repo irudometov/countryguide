@@ -12,21 +12,11 @@ import Reachability
 import RxReachability
 import RxSwift
 
-final class AppCoordinator: NSObject, ICoordinator {
+final class AppCoordinator: NavigatableCoordinator {
     
     private let countryProvider: ICountryProvider
     private let window: UIWindow
     private let reachability = Reachability()
-    
-    let uuid: UUID = UUID()
-    
-    var childCoordinators: [ICoordinator] = [] {
-        didSet {
-            print("child: \(childCoordinators)")
-        }
-    }
-    
-    let navigationController = UINavigationController()
     
     // MARK: - init
     
@@ -35,7 +25,7 @@ final class AppCoordinator: NSObject, ICoordinator {
         countryProvider = CountryProvider(apiService: APIService())
     }
     
-    func start() {        
+    override func start() {
         
         let viewModel = CountryListViewModel(countryProvider: countryProvider)
         let viewController = CountryListViewController.newInstance(viewModel: viewModel)
@@ -54,33 +44,6 @@ final class AppCoordinator: NSObject, ICoordinator {
         let coordinator = CountryDetailsCoordinator(navigationController: navigationController,
                                                     countryProvider: countryProvider,
                                                     selectedCountry: selectedCountry)
-        childCoordinators.append(coordinator)
-        coordinator.start()
-    }
-    
-    private func childDidFinish(_ coordinator: ICoordinator) {
-        guard let index = childCoordinators.firstIndex(where: { coordinator.uuid == $0.uuid }) else { return }
-        childCoordinators.remove(at: index)
-    }
-}
-
-extension AppCoordinator: UINavigationControllerDelegate {
-    
-    func navigationController(_ navigationController: UINavigationController,
-                              didShow viewController: UIViewController,
-                              animated: Bool) {
-        
-        guard let fromViewController = navigationController.transitionCoordinator?.viewController(forKey: .from) else {
-            return
-        }
-        
-        if navigationController.viewControllers.contains(fromViewController) {
-            return
-        }
-        
-        if let coordinatedViewController = fromViewController as? Coordinated,
-            let coordinator = coordinatedViewController.coordinator {
-            childDidFinish(coordinator)
-        }
+        addChildCoordinatorAndStart(coordinator)
     }
 }
