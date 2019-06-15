@@ -26,8 +26,8 @@ struct CurrencyCellModel {
 
 extension CurrencyCellModel: IdentifiableType, Hashable {
     
-    var hashValue: Int {
-        return (currencyName + currencySymbol).hashValue
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(currencyName + currencySymbol)
     }
     
     var identity: String { return String(hashValue) }
