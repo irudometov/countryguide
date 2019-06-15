@@ -10,7 +10,7 @@ import UIKit
 
 // MARK: - Protocols
 
-protocol Coordinator {
+protocol Coordinator: AnyObject {
     
     var uuid: UUID { get }
     

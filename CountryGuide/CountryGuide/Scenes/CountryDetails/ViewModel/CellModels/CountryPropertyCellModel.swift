@@ -32,7 +32,9 @@ extension CountryPropertyCellModel: IdentifiableType, Hashable {
         }
     }
     
-    var hashValue: Int { return identity.hash }
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(identity.hash)
+    }
     
     static func == (lhs: CountryPropertyCellModel, rhs: CountryPropertyCellModel) -> Bool {
         return lhs.hashValue == rhs.hashValue
