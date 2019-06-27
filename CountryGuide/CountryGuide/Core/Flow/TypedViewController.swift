@@ -10,7 +10,7 @@ import UIKit
 
 class TypedViewController<VM: StateViewModel>: UIViewController, Storyboardable, Coordinated {
     
-    var viewModel: VM!
+    private (set) var viewModel: VM!
     var coordinator: Coordinator?
     
     class func newInstance(viewModel: VM, storyboardId: String) -> Self {

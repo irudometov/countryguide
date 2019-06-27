@@ -28,9 +28,7 @@ extension Coordinator {
         where VC : TypedViewController<VM> {
             
             let viewController = VC.newInstance(viewModel: viewModel, storyboardId: storyboardId)
-            viewController.viewModel = viewModel
-            viewController.coordinator = self
-            
+            viewController.coordinator = self            
             navigationController.pushViewController(viewController, animated: true)
     }
 }
